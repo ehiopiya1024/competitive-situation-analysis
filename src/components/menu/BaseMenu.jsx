@@ -50,7 +50,7 @@ const BaseMenu = ({ collapsed }) => (
         </MenuItemGroup>
         <MenuItemGroup title="高级功能">
           <Menu.Item key="9">
-            <Link to="/demo">
+            <Link to="/search">
               <Icon type="search" />
               <span>高级检索</span>
             </Link>

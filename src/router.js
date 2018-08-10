@@ -10,6 +10,7 @@ import BaseLayout from "./components/layouts/BaseLayout";
 import Exception from "./pages/exception";
 import HomePage from "./pages/home/HomePage";
 import DemoPage from "./pages/demo/DemoPage";
+import SearchPage from "./pages/search/SearchPage";
 
 function RouterConfig({ history }) {
   return (
@@ -32,6 +33,7 @@ function RouterConfig({ history }) {
           <Route path="/thought" render={() => <h1>thought....</h1>} exact />
           <Route path="/exception" component={Exception} />
           <Route path="/demo" component={DemoPage} exact />
+          <Route path="/search" component={SearchPage} exact />
         </Switch>
       </BaseLayout>
     </Router>
