@@ -3,13 +3,13 @@
  * @Date: 2018-07-19 21:58:44
  */
 
-import React from 'react';
-import { Router, Route, Switch, Redirect } from 'dva/router';
+import React from "react";
+import { Router, Route, Switch, Redirect } from "dva/router";
 
-import BaseLayout from './components/layouts/BaseLayout';
-import Exception from './pages/exception';
-import HomePage from './pages/home/HomePage';
-import DemoPage from './pages/demo/DemoPage';
+import BaseLayout from "./components/layouts/BaseLayout";
+import Exception from "./pages/exception";
+import HomePage from "./pages/home/HomePage";
+import DemoPage from "./pages/demo/DemoPage";
 
 function RouterConfig({ history }) {
   return (
@@ -18,7 +18,18 @@ function RouterConfig({ history }) {
         <Switch>
           <Route path="/" render={() => <Redirect to="/home" />} exact />
           <Route path="/home" component={HomePage} exact />
-          <Route path="/about" render={() => <h1>About....</h1>} exact />
+          <Route
+            path="/literature"
+            render={() => <h1>literature....</h1>}
+            exact
+          />
+          <Route path="/art" render={() => <h1>art....</h1>} exact />
+          <Route
+            path="/collection"
+            render={() => <h1>collection....</h1>}
+            exact
+          />
+          <Route path="/thought" render={() => <h1>thought....</h1>} exact />
           <Route path="/exception" component={Exception} />
           <Route path="/demo" component={DemoPage} exact />
         </Switch>

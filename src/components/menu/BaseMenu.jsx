@@ -22,25 +22,25 @@ const BaseMenu = ({ collapsed }) => (
             </Link>
           </Menu.Item>
           <Menu.Item key="2">
-            <Link to="/home">
+            <Link to="/literature">
               <Icon type="book" />
               <span>文学</span>
             </Link>
           </Menu.Item>
           <Menu.Item key="3">
-            <Link to="/home">
+            <Link to="/art">
               <Icon className={styles.anticon}>&#xe642;</Icon>
               <span>艺术</span>
             </Link>
           </Menu.Item>
           <Menu.Item key="4">
-            <Link to="/home">
+            <Link to="/collection">
               <Icon className={styles.anticon}>&#xe64d;</Icon>
               <span>收藏</span>
             </Link>
           </Menu.Item>
           <Menu.Item key="5">
-            <Link to="/home">
+            <Link to="/thought">
               <Icon className={`${styles.anticon} ${styles.small}`}>
                 &#xe62a;
               </Icon>
