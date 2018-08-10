@@ -2,12 +2,12 @@
  * @Author: liu.yang
  * @Date: 2018-05-17 09:42:35
  */
-import React, { Component } from 'react';
-import { Layout, Breadcrumb } from 'antd';
+import React, { Component } from "react";
+import { Layout, Breadcrumb, Row, Col } from "antd";
 
-import TopHeader from '../header/TopHeader';
-import BaseMenu from '../menu/BaseMenu';
-import styles from './BaseLayout.less';
+import TopHeader from "../header/TopHeader";
+import BaseMenu from "../menu/BaseMenu";
+import styles from "./BaseLayout.less";
 
 const { Content } = Layout;
 
@@ -29,11 +29,23 @@ class BaseLayout extends Component {
         <Layout>
           <TopHeader collapsed={collapsed} onCollapse={this.onCollapse} />
           <Content className={styles.content}>
-            <Breadcrumb style={{ margin: '0 16px 16px 0' }}>
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
-              <Breadcrumb.Item>List</Breadcrumb.Item>
-              <Breadcrumb.Item>App</Breadcrumb.Item>
-            </Breadcrumb>
+            <Row
+              type="flex"
+              justify="space-between"
+              align="middle"
+              style={{ margin: "0" }}
+            >
+              <Col span={6}>
+                <h1>这是路由</h1>
+              </Col>
+              <Col span={6} style={{ textAlign: "right" }}>
+                <Breadcrumb>
+                  <Breadcrumb.Item>Home</Breadcrumb.Item>
+                  <Breadcrumb.Item>List</Breadcrumb.Item>
+                  <Breadcrumb.Item>App</Breadcrumb.Item>
+                </Breadcrumb>
+              </Col>
+            </Row>
             {children}
           </Content>
         </Layout>
