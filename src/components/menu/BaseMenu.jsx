@@ -5,7 +5,7 @@ import styles from "./BaseMenu.less";
 
 // sider 有一个双次render的bug，是框架自身问题，如果有强制要求，可以考虑替换
 const { Sider } = Layout;
-const { SubMenu } = Menu;
+const MenuItemGroup = Menu.ItemGroup;
 
 const BaseMenu = ({ collapsed }) => (
   <Sider collapsed={collapsed}>
@@ -13,54 +13,53 @@ const BaseMenu = ({ collapsed }) => (
       <div className={styles.logo}>
         <div className={styles.img}>{/* ... */}</div>
       </div>
-      <Menu defaultSelectedKeys={["1"]} mode="inline" theme="dark">
-        <Menu.Item key="1">
-          <Link to="/home">
-            <Icon type="pie-chart" />
-            <span>Home</span>
-          </Link>
-        </Menu.Item>
-        <Menu.Item key="2">
-          <Link to="/about">
-            <Icon type="desktop" />
-            <span>About</span>
-          </Link>
-        </Menu.Item>
-        <SubMenu
-          key="sub1"
-          title={
-            <span>
-              <Icon type="user" />
-              <span>User</span>
-            </span>
-          }
-        >
-          <Menu.Item key="3">Tom</Menu.Item>
-          <Menu.Item key="4">Bill</Menu.Item>
-          <Menu.Item key="5">Alex</Menu.Item>
-        </SubMenu>
-        <SubMenu
-          key="sub2"
-          title={
-            <span>
-              <Icon type="team" />
-              <span>Team</span>
-            </span>
-          }
-        >
-          <Menu.Item key="6">Team 1</Menu.Item>
-          <Menu.Item key="8">Team 2</Menu.Item>
-        </SubMenu>
-        <Menu.Item key="9">
-          <Icon type="file" />
-          <span>File</span>
-        </Menu.Item>
-        <Menu.Item key="10">
-          <Link to="/demo">
-            <Icon type="smile-o" />
-            <span>Demo</span>
-          </Link>
-        </Menu.Item>
+      <Menu defaultSelectedKeys={["1"]} mode="vertical" theme="dark">
+        <MenuItemGroup key="g1" title="文档分类">
+          <Menu.Item key="1">
+            <Link to="/home">
+              <Icon type="home" />
+              <span>今日推荐</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="2">
+            <Link to="/home">
+              <Icon type="book" />
+              <span>文学</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="3">
+            <Link to="/home">
+              <i className={styles.anticon}>&#xe642;</i>
+              <span>艺术</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="4">
+            <Link to="/home">
+              <i className={styles.anticon}>&#xe64d;</i>
+              <span>收藏</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="5">
+            <Link to="/home">
+              <i className={`${styles.anticon} ${styles.small}`}>&#xe62a;</i>
+              <span>思想</span>
+            </Link>
+          </Menu.Item>
+        </MenuItemGroup>
+        <MenuItemGroup title="高级功能">
+          <Menu.Item key="9">
+            <Link to="/demo">
+              <Icon type="search" />
+              <span>高级检索</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="10">
+            <Link to="/demo">
+              <Icon type="smile-o" />
+              <span>Demo</span>
+            </Link>
+          </Menu.Item>
+        </MenuItemGroup>
       </Menu>
     </div>
   </Sider>

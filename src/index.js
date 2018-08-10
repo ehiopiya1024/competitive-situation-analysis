@@ -1,5 +1,6 @@
 import dva from "dva";
 import "./index.less";
+import "./global.less";
 import createBrowserHistory from "history/createBrowserHistory";
 
 import models from "./models";
