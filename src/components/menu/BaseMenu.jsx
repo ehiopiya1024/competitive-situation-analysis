@@ -29,19 +29,21 @@ const BaseMenu = ({ collapsed }) => (
           </Menu.Item>
           <Menu.Item key="3">
             <Link to="/home">
-              <i className={styles.anticon}>&#xe642;</i>
+              <Icon className={styles.anticon}>&#xe642;</Icon>
               <span>艺术</span>
             </Link>
           </Menu.Item>
           <Menu.Item key="4">
             <Link to="/home">
-              <i className={styles.anticon}>&#xe64d;</i>
+              <Icon className={styles.anticon}>&#xe64d;</Icon>
               <span>收藏</span>
             </Link>
           </Menu.Item>
           <Menu.Item key="5">
             <Link to="/home">
-              <i className={`${styles.anticon} ${styles.small}`}>&#xe62a;</i>
+              <Icon className={`${styles.anticon} ${styles.small}`}>
+                &#xe62a;
+              </Icon>
               <span>思想</span>
             </Link>
           </Menu.Item>
