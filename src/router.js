@@ -1,8 +1,3 @@
-/**
- * @Author: liu.yang
- * @Date: 2018-07-19 21:58:44
- */
-
 import React from "react";
 import { Router, Route, Switch, Redirect } from "dva/router";
 
@@ -15,7 +10,7 @@ import SearchPage from "./pages/search/SearchPage";
 function RouterConfig({ history }) {
   return (
     <Router history={history}>
-      <BaseLayout>
+      <BaseLayout location={history.location}>
         <Switch>
           <Route path="/" render={() => <Redirect to="/home" />} exact />
           <Route path="/home" component={HomePage} exact />

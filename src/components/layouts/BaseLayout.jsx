@@ -23,31 +23,13 @@ class BaseLayout extends Component {
   render() {
     const { children } = this.props;
     const { collapsed } = this.state;
+    const pn = this.props.location.pathname;
     return (
       <Layout className={styles.root}>
-        <BaseMenu collapsed={collapsed} />
+        <BaseMenu collapsed={collapsed} location={this.props.location} />
         <Layout>
           <TopHeader collapsed={collapsed} onCollapse={this.onCollapse} />
-          <Content className={styles.content}>
-            <Row
-              type="flex"
-              justify="space-between"
-              align="middle"
-              style={{ margin: "0" }}
-            >
-              <Col span={6}>
-                <h1>这是路由</h1>
-              </Col>
-              <Col span={6} style={{ textAlign: "right" }}>
-                <Breadcrumb>
-                  <Breadcrumb.Item>Home</Breadcrumb.Item>
-                  <Breadcrumb.Item>List</Breadcrumb.Item>
-                  <Breadcrumb.Item>App</Breadcrumb.Item>
-                </Breadcrumb>
-              </Col>
-            </Row>
-            {children}
-          </Content>
+          <Content className={styles.content}>{children}</Content>
         </Layout>
       </Layout>
     );

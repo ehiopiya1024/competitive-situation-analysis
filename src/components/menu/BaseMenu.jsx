@@ -7,39 +7,43 @@ import styles from "./BaseMenu.less";
 const { Sider } = Layout;
 const MenuItemGroup = Menu.ItemGroup;
 
-const BaseMenu = ({ collapsed }) => (
+const BaseMenu = ({ collapsed, location }) => (
   <Sider collapsed={collapsed}>
     <div className={styles.root}>
       <div className={styles.logo}>
         <div className={styles.img}>{/* ... */}</div>
       </div>
-      <Menu defaultSelectedKeys={["1"]} mode="vertical" theme="dark">
+      <Menu
+        defaultSelectedKeys={[location.pathname]}
+        mode="vertical"
+        theme="dark"
+      >
         <MenuItemGroup key="g1" title="文档分类">
-          <Menu.Item key="1">
+          <Menu.Item key="/home">
             <Link to="/home">
               <Icon type="home" />
               <span>今日推荐</span>
             </Link>
           </Menu.Item>
-          <Menu.Item key="2">
+          <Menu.Item key="/literature">
             <Link to="/literature">
               <Icon type="book" />
               <span>文学</span>
             </Link>
           </Menu.Item>
-          <Menu.Item key="3">
+          <Menu.Item key="/art">
             <Link to="/art">
               <Icon className={styles.anticon}>&#xe642;</Icon>
               <span>艺术</span>
             </Link>
           </Menu.Item>
-          <Menu.Item key="4">
+          <Menu.Item key="/collection">
             <Link to="/collection">
               <Icon className={styles.anticon}>&#xe64d;</Icon>
               <span>收藏</span>
             </Link>
           </Menu.Item>
-          <Menu.Item key="5">
+          <Menu.Item key="/thought">
             <Link to="/thought">
               <Icon className={`${styles.anticon} ${styles.small}`}>
                 &#xe62a;
@@ -49,13 +53,13 @@ const BaseMenu = ({ collapsed }) => (
           </Menu.Item>
         </MenuItemGroup>
         <MenuItemGroup title="高级功能">
-          <Menu.Item key="9">
+          <Menu.Item key="/search">
             <Link to="/search">
               <Icon type="search" />
               <span>高级检索</span>
             </Link>
           </Menu.Item>
-          <Menu.Item key="10">
+          <Menu.Item key="/demo">
             <Link to="/demo">
               <Icon type="smile-o" />
               <span>Demo</span>
