@@ -21,11 +21,11 @@ class BaseLayout extends Component {
   };
 
   render() {
-    const { children } = this.props;
+    const { children, location } = this.props;
     const { collapsed } = this.state;
     return (
       <Layout className={styles.root}>
-        <BaseMenu collapsed={collapsed} location={this.props.location} />
+        <BaseMenu collapsed={collapsed} location={location} />
         <Layout>
           <TopHeader collapsed={collapsed} onCollapse={this.onCollapse} />
           <Content className={styles.content}>{children}</Content>

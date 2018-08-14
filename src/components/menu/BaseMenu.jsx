@@ -3,9 +3,16 @@ import { Link } from "react-router-dom";
 import { Menu, Icon, Layout } from "antd";
 import styles from "./BaseMenu.less";
 
-// sider 有一个双次render的bug，是框架自身问题，如果有强制要求，可以考虑替换
 const { Sider } = Layout;
 const MenuItemGroup = Menu.ItemGroup;
+
+const keys = [
+  "/articles/home",
+  "/articles/literature",
+  "/articles/art",
+  "/articles/collection",
+  "/articles/thought"
+];
 
 const BaseMenu = ({ collapsed, location }) => (
   <Sider collapsed={collapsed}>
@@ -15,38 +22,38 @@ const BaseMenu = ({ collapsed, location }) => (
       </div>
       <Menu
         defaultSelectedKeys={[
-          location.pathname === "/" ? "/home" : location.pathname
+          location.pathname === "/" ? "/articles/home" : location.pathname
         ]}
         mode="vertical"
         theme="dark"
       >
         <MenuItemGroup key="g1" title="文档分类">
-          <Menu.Item key="/home">
-            <Link to="/home">
+          <Menu.Item key={keys[0]}>
+            <Link to={keys[0]}>
               <Icon type="home" />
               <span>今日推荐</span>
             </Link>
           </Menu.Item>
-          <Menu.Item key="/literature">
-            <Link to="/literature">
+          <Menu.Item key={keys[1]}>
+            <Link to={keys[1]}>
               <Icon type="book" />
               <span>文学</span>
             </Link>
           </Menu.Item>
-          <Menu.Item key="/art">
-            <Link to="/art">
+          <Menu.Item key={keys[2]}>
+            <Link to={keys[2]}>
               <Icon className={styles.anticon}>&#xe642;</Icon>
               <span>艺术</span>
             </Link>
           </Menu.Item>
-          <Menu.Item key="/collection">
-            <Link to="/collection">
+          <Menu.Item key={keys[3]}>
+            <Link to={keys[3]}>
               <Icon className={styles.anticon}>&#xe64d;</Icon>
               <span>收藏</span>
             </Link>
           </Menu.Item>
-          <Menu.Item key="/thought">
-            <Link to="/thought">
+          <Menu.Item key={keys[4]}>
+            <Link to={keys[4]}>
               <Icon className={`${styles.anticon} ${styles.small}`}>
                 &#xe62a;
               </Icon>
