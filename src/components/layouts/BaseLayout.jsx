@@ -3,7 +3,7 @@
  * @Date: 2018-05-17 09:42:35
  */
 import React, { Component } from "react";
-import { Layout, Breadcrumb, Row, Col } from "antd";
+import { Layout } from "antd";
 
 import TopHeader from "../header/TopHeader";
 import BaseMenu from "../menu/BaseMenu";
@@ -23,7 +23,6 @@ class BaseLayout extends Component {
   render() {
     const { children } = this.props;
     const { collapsed } = this.state;
-    const pn = this.props.location.pathname;
     return (
       <Layout className={styles.root}>
         <BaseMenu collapsed={collapsed} location={this.props.location} />

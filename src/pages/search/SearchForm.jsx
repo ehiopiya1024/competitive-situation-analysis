@@ -1,11 +1,27 @@
 import React from "react";
-import { Form, Row, Col, Input, Button } from "antd";
+import { Form, Row, Col, Button, Select, DatePicker } from "antd";
+import DynamicForm from "./DynamicForm";
 
 const FormItem = Form.Item;
+const { Option } = Select;
+const { RangePicker } = DatePicker;
+const options = Array.from(["全部", "文学", "艺术", "收藏", "思想"]);
+const formItemLayout = {
+  labelCol: {
+    xs: { span: 24 },
+    sm: { span: 2 }
+  },
+  wrapperCol: {
+    xs: { span: 24 },
+    sm: {
+      span: 18,
+      offset: 2
+    }
+  },
+  colon: false
+};
 
 class SearchForm extends React.Component {
-  formdata = Array.from(["文档分类", "文档时间", "检索条件", "文档来源"]);
-
   handleSearch = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -17,28 +33,33 @@ class SearchForm extends React.Component {
     this.props.form.resetFields();
   };
 
-  // To generate mock Form.Item
-  getFields() {
-    const { getFieldDecorator } = this.props.form;
+  getOptions(data) {
     const children = [];
-    const data = this.formdata;
+    console.log(this);
     for (let i = 0; i < data.length; i += 1) {
       children.push(
-        <Col span={8} key={i}>
-          <FormItem label={data[i]}>
-            {getFieldDecorator(`field-${i}`, {
-              rules: [
-                {
-                  required: true,
-                  message: "Input something!"
-                }
-              ]
-            })(<Input placeholder="placeholder" />)}
-          </FormItem>
-        </Col>
+        <Option vlaue={data[i]} key={i}>
+          {data[i]}
+        </Option>
       );
     }
     return children;
+  }
+
+  getFields() {
+    return (
+      <Col span={24}>
+        <FormItem {...formItemLayout} label="文档类型">
+          <Select style={{ width: "96%" }} defaultValue="全部">
+            {this.getOptions(options)}
+          </Select>
+        </FormItem>
+        <FormItem {...formItemLayout} label="文档时间">
+          <RangePicker />
+        </FormItem>
+        <DynamicForm formItemLayout={formItemLayout} />
+      </Col>
+    );
   }
 
   render() {
@@ -62,4 +83,4 @@ class SearchForm extends React.Component {
   }
 }
 
-export default SearchForm;
+export default Form.create()(SearchForm);

@@ -14,7 +14,9 @@ const BaseMenu = ({ collapsed, location }) => (
         <div className={styles.img}>{/* ... */}</div>
       </div>
       <Menu
-        defaultSelectedKeys={[location.pathname]}
+        defaultSelectedKeys={[
+          location.pathname === "/" ? "/home" : location.pathname
+        ]}
         mode="vertical"
         theme="dark"
       >
