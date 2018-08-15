@@ -30,7 +30,7 @@ class UserInfo extends React.Component {
   render() {
     const collectItem = this.state.collectDataNew.map((item, index) => {
       const articleNode = item.articles.map((article, i) => (
-        <Timeline.Item key={"collectItemarticle-" + i}>
+        <Timeline.Item key={`collectItemarticle-${i}`}>
           <div className={styles.articlePart}>
             <div className={styles.top}>
               <Link to="/" className={styles.title}>
@@ -43,7 +43,7 @@ class UserInfo extends React.Component {
         </Timeline.Item>
       ));
       return (
-        <Timeline key={"collectItemNode-" + index}>
+        <Timeline key={`collectItemNode-${index}`}>
           <div>{item.date}</div>
           {articleNode}
         </Timeline>

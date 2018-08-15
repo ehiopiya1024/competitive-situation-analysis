@@ -105,16 +105,13 @@ let apartment = "";
 const f = {
   collectDataNew: () => {
     const data = collectDataSort();
-    const temp = d => {
-      d = moment(d.collectTime).format("YYYY-MM-DD HH:mm:ss");
-      return d.toString().substring(0, 10);
-    };
-    let result = [];
+    const temp = d => moment(d.collectTime).format("YYYY-MM-DD");
+    const result = [];
     let articles = [];
     let node = {};
     node.articles = articles;
     for (let i = 0; i < data.length - 1; i += 1) {
-      let article = [];
+      const article = [];
       article.title = data[i].title;
       article.collectTime = moment(data[i].collectTime).format(
         "YYYY-MM-DD HH:mm:ss"
@@ -165,15 +162,6 @@ const f = {
     if (mail.value !== "" && !mailReg.test(mail.value)) {
       m1.innerHTML = "<font color='red'>邮件地址格式错误！</font>";
     } else {
-      console.log(
-        apartment +
-          "," +
-          username.value +
-          "," +
-          headImg.value +
-          "," +
-          mail.value
-      );
       /**
        * 修改用户信息  to do code
        * */
