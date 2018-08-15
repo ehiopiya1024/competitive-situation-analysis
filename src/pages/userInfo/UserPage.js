@@ -105,10 +105,7 @@ let apartment = "";
 const f = {
   collectDataNew: () => {
     const data = collectDataSort();
-    const temp = d => {
-      d = moment(d.collectTime).format("YYYY-MM-DD HH:mm:ss");
-      return d.toString().substring(0, 10);
-    };
+    const temp = d => moment(d.collectTime).format("YYYY-MM-DD");
     let result = [];
     let articles = [];
     let node = {};
