@@ -12,7 +12,11 @@ function RouterConfig({ history }) {
     <Router history={history}>
       <BaseLayout location={history.location}>
         <Switch>
-          <Route path="/" render={() => <Redirect to="/home" />} exact />
+          <Route
+            path="/"
+            render={() => <Redirect to="/articles/home" />}
+            exact
+          />
           <Route path="/articles/:type" component={ArticlePage} />
           <Route path="/exception" component={Exception} />
           <Route path="/demo" component={DemoPage} exact />

@@ -1,24 +1,18 @@
 import React from "react";
 import { Spin } from "antd";
+import { connect } from "dva";
 import Article from "./Article";
 
+@connect(({ demo }) => ({ demoData: demo })) // dva连接数据
 class ArticlePage extends React.Component {
-  state = {
-    loading: true
-  };
+  needSpin = true;
 
-  type = "none";
-
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({ loading: false });
-    }, 3000);
+  render() {
+    const { dispatch, demoData } = this.props; // 使用数据
+    console.log(dispatch);
+    console.log(demoData);
+    return this.needSpin ? <Spin /> : <Article />;
   }
-
-  render = () => {
-    const { type } = this.props.match.params;
-    return this.state.loading ? <Spin /> : <Article />;
-  };
 }
 
 export default ArticlePage;
