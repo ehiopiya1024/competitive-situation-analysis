@@ -17,9 +17,6 @@ const keys = [
 const BaseMenu = ({ collapsed, location }) => (
   <Sider collapsed={collapsed}>
     <div className={styles.root}>
-      <div className={styles.logo}>
-        <div className={styles.img}>{/* ... */}</div>
-      </div>
       <Menu
         defaultSelectedKeys={[
           location.pathname === "/" ? "/articles/home" : location.pathname
