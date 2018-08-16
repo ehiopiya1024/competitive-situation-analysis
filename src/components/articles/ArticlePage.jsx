@@ -18,7 +18,9 @@ class ArticlePage extends React.Component {
         <Spin size="large" />
       </div>
     ) : (
-      data.map((v, k) => <Article data={v} key={k} />)
+      data.map((v, k) => (
+        <Article data={v} key={k} dispatch={this.props.dispatch} />
+      ))
     );
   }
 }

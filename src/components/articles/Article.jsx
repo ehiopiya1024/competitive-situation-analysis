@@ -1,17 +1,21 @@
 import React from "react";
-import { Row, Col, Tag, Icon } from "antd";
+import { connect } from "dva";
+import { Row, Col, Tag, Icon, message } from "antd";
 import styles from "./Article.less";
 
 class Article extends React.Component {
-  handleStar = () => {
-    const { star } = this.state;
-    this.setState({
-      star: !star
-    });
-  };
-
   state = {
     star: false
+  };
+
+  componentDidMount() {
+    this.setState({ star: this.props.data.liked });
+  }
+
+  handleLike = (id, liked) => {
+    this.setState({ star: !liked });
+    const { dispatch } = this.props;
+    dispatch({ type: "article/like", articleId: id, message, liked });
   };
 
   render = () => {
@@ -20,7 +24,7 @@ class Article extends React.Component {
       <div className={styles.root}>
         <Row className={styles.top}>
           <a>{data.title}</a>
-          <p>{data.content}</p>
+          <div>{data.content}</div>
         </Row>
         <Row className={styles.bottom}>
           <Col span="12">
@@ -42,7 +46,7 @@ class Article extends React.Component {
               }}
               type={this.state.star ? "star" : "star-o"}
               title="收藏"
-              onClick={this.handleStar}
+              onClick={this.handleLike.bind(this, data.id, this.state.star)}
             />
           </Col>
         </Row>
@@ -53,4 +57,4 @@ class Article extends React.Component {
   };
 }
 
-export default Article;
+export default connect(({ article }) => ({ articleData: article }))(Article);

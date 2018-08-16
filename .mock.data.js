@@ -1,5 +1,6 @@
 const articles = [
   {
+    id: "0",
     title: "Vision",
     content:
       "Our vision is a Networked Society where every person and every industry is empowered to reach their full potential. Realization of this vision means progress in everyday life of billions of people, millions of businesses and a development towards a more inclusive, equitable and sustainable society. Our mission At Ericsson, we embrace this future development and have set out our mission to lead transformation through mobility, where we as a leading innovator drive transformation of industries an more what ever",
@@ -8,6 +9,7 @@ const articles = [
     liked: false
   },
   {
+    id: "1",
     title: "Executive Team",
     content:
       "The Board of Directors appoints the President and CEO and the Executive Vice Presidents. The President and CEO is responsible for the management of day-to-day operations and is supported by the Executive Team. Members of the Executive Team Börje Ekholm President and CEO (since January 16, 2017) Born 1963. Master of Science in Electrical Engineering, KTH Royal Institute of Technology, Stockholm, Sweden. Master of Business Administration, INSEAD, France. Board Member: Telefonaktiebolaget LM Erics balabalabalabalba",
@@ -45,6 +47,16 @@ const mock = {
         data: articles
       });
     }, 300);
+  },
+
+  "Get /api/like": (req, res) => {
+    console.log(req.query);
+    setTimeout(() => {
+      res.status(200).json({
+        errCode: "0",
+        data: true
+      });
+    }, 200);
   }
 };
 module.exports = mock;
