@@ -72,9 +72,6 @@ class SearchForm extends React.Component {
               <Button type="primary" htmlType="submit">
                 查询
               </Button>
-              <Button style={{ marginLeft: 8 }} onClick={this.handleReset}>
-                Clear
-              </Button>
             </Col>
           </Row>
         </Form>

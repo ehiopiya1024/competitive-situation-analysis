@@ -6,20 +6,14 @@ import styles from "./BaseMenu.less";
 const { Sider } = Layout;
 const MenuItemGroup = Menu.ItemGroup;
 
-const keys = [
-  "/articles/home",
-  "/articles/literature",
-  "/articles/art",
-  "/articles/collection",
-  "/articles/thought"
-];
+const keys = ["/home", "/literature", "/art", "/collection", "/thought"];
 
 const BaseMenu = ({ collapsed, location }) => (
   <Sider collapsed={collapsed}>
     <div className={styles.root}>
       <Menu
         defaultSelectedKeys={[
-          location.pathname === "/" ? "/articles/home" : location.pathname
+          location.pathname === "/" ? "/home" : location.pathname
         ]}
         mode="vertical"
         theme="dark"

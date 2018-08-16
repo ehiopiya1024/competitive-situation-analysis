@@ -5,22 +5,28 @@ import BaseLayout from "./components/layouts/BaseLayout";
 import Exception from "./pages/exception";
 import DemoPage from "./pages/demo/DemoPage";
 import SearchPage from "./pages/search/SearchPage";
-import ArticlePage from "./components/articles/ArticlePage";
 
 import UserInfo from "./pages/userInfo/UserInfo";
 import Login from "./pages/login/Login";
+
+import HomePage from "./pages/home/HomePage";
+import LiteraturePage from "./pages/literature/LiteraturePage";
+import ArtPage from "./pages/art/ArtPage";
+import CollectionPage from "./pages/collection/CollectionPage";
+import ThoughtPage from "./pages/thought/ThoughtPage";
 
 function RouterConfig({ history }) {
   return (
     <Router history={history}>
       <BaseLayout location={history.location}>
         <Switch>
-          <Route
-            path="/"
-            render={() => <Redirect to="/articles/home" />}
-            exact
-          />
-          <Route path="/articles/:type" component={ArticlePage} />
+          <Route path="/" render={() => <Redirect to="/home" />} exact />
+          <Route path="/home" component={HomePage} exact />
+          <Route path="/literature" component={LiteraturePage} exact />
+          <Route path="/art" component={ArtPage} exact />
+          <Route path="/collection" component={CollectionPage} exact />
+          <Route path="/thought" component={ThoughtPage} exact />
+
           <Route path="/exception" component={Exception} />
           <Route path="/demo" component={DemoPage} exact />
           <Route path="/search" component={SearchPage} exact />

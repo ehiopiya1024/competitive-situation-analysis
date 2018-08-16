@@ -32,7 +32,6 @@ class Article extends React.Component {
             ))}
           </Col>
           <Col span="12" className={styles.pull_right}>
-            <p>{data.resource}</p>
             <p>{data.time}</p>
             <Icon
               style={{

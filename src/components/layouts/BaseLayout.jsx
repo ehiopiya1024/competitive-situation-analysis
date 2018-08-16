@@ -3,7 +3,7 @@
  * @Date: 2018-05-17 09:42:35
  */
 import React, { Component } from "react";
-import { Layout, Breadcrumb } from "antd";
+import { Layout } from "antd";
 
 import TopHeader from "../header/TopHeader";
 import BaseMenu from "../menu/BaseMenu";

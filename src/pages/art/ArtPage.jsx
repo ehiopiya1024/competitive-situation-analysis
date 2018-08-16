@@ -1,6 +1,6 @@
 import React from "react";
 import ArticlePage from "../../components/articles/ArticlePage";
 
-const HomePage = () => <ArticlePage type="home" />;
+const ArtPage = () => <ArticlePage type="art" />;
 
-export default HomePage;
+export default ArtPage;
