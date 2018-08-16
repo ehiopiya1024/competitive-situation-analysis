@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "dva";
+import { Link } from "react-router-dom";
 import { Row, Col, Tag, Icon, message } from "antd";
 import styles from "./Article.less";
 
@@ -9,7 +10,7 @@ class Article extends React.Component {
   };
 
   componentDidMount() {
-    this.setState({ star: this.props.data.liked });
+    if (this.props.data) this.setState({ star: this.props.data.liked });
   }
 
   handleLike = (id, liked) => {
@@ -29,10 +30,14 @@ class Article extends React.Component {
         <Row className={styles.bottom}>
           <Col span="12">
             {data.tags.map((v, k) => (
-              <Tag key={k}>
-                <Icon type="tag" />
-                {v}
-              </Tag>
+              <Link key={k} to={`/tags/${v}`}>
+                <Tag
+                  onClick={this.props.handleTag ? this.props.handleTag : null}
+                >
+                  <Icon type="tag" />
+                  {v}
+                </Tag>
+              </Link>
             ))}
           </Col>
           <Col span="12" className={styles.pull_right}>

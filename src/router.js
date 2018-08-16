@@ -14,6 +14,7 @@ import LiteraturePage from "./pages/literature/LiteraturePage";
 import ArtPage from "./pages/art/ArtPage";
 import CollectionPage from "./pages/collection/CollectionPage";
 import ThoughtPage from "./pages/thought/ThoughtPage";
+import TagSearchPage from "./pages/tagSearch/TagSearchPage";
 
 function RouterConfig({ history }) {
   return (
@@ -33,6 +34,8 @@ function RouterConfig({ history }) {
 
           <Route path="/user" component={UserInfo} exact />
           <Route path="/login" component={Login} exact />
+
+          <Route path="/tags/:tagName" component={TagSearchPage} />
         </Switch>
       </BaseLayout>
     </Router>

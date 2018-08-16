@@ -57,6 +57,25 @@ const mock = {
         data: true
       });
     }, 200);
+  },
+
+  "Get /api/getTagData": (req, res) => {
+    console.log(req.query);
+    let data;
+    const { tagName } = req.query;
+    if (tagName === "Ericsson") {
+      data = articles;
+    } else {
+      data = articles.filter(e => {
+        return e.tags.indexOf(tagName) > -1;
+      });
+    }
+    setTimeout(() => {
+      res.status(200).json({
+        errCode: "0",
+        data
+      });
+    }, 400);
   }
 };
 module.exports = mock;

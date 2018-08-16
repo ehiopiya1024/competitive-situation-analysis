@@ -1,8 +1,8 @@
 import React from "react";
 import { Spin } from "antd";
 import { connect } from "dva";
-import Article from "./Article";
-import Styles from "./Article.less";
+import Article from "./components/Article";
+import Styles from "./components/Article.less";
 
 class ArticlePage extends React.Component {
   componentDidMount() {
