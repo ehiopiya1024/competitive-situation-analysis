@@ -24,7 +24,9 @@ class Article extends React.Component {
     return data ? (
       <div className={styles.root}>
         <Row className={styles.top}>
-          <a>{data.title}</a>
+          <Link to={`/article/${data.title}`}>
+            <a>{data.title}</a>
+          </Link>
           <div>{data.content}</div>
         </Row>
         <Row className={styles.bottom}>
