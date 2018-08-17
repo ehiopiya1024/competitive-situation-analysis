@@ -1,14 +1,14 @@
-import apis from './demoApi';
+import apis from "./demoApi";
 
 const { getData } = apis;
 
 const initData = {
-  todoList: [{ text: '测试任务', complete: false, id: Date.now() }],
+  todoList: [{ text: "测试任务", complete: false, id: Date.now() }],
   hasFetch: false,
   fetchLog: []
 };
 export default {
-  namespace: 'demo',
+  namespace: "demo",
   state: {
     ...initData
   },
@@ -19,16 +19,16 @@ export default {
   // },
   effects: {
     *getData({ payload }, { call, put }) {
-      yield put({ type: 'changeGetDataStatus', payload: true });
-      yield put({ type: 'addLog', payload: '开始请求数据' });
+      yield put({ type: "changeGetDataStatus", payload: true });
+      yield put({ type: "addLog", payload: "开始请求数据" });
       const resData = yield call(getData, { type: payload });
-      yield put({ type: 'changeGetDataStatus', payload: false });
-      yield put({ type: 'addLog', payload: '请求完毕' });
+      yield put({ type: "changeGetDataStatus", payload: false });
+      yield put({ type: "addLog", payload: "请求完毕" });
       const { errCode, data } = resData;
-      if (errCode === '0') {
-        yield put({ type: 'addLog', payload: data });
+      if (errCode === "0") {
+        yield put({ type: "addLog", payload: data });
       } else {
-        yield put({ type: 'addLog', payload: '返回数据异常' });
+        yield put({ type: "addLog", payload: "返回数据异常" });
       }
     }
   },

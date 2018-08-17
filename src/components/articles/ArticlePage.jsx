@@ -1,18 +1,30 @@
 import React from "react";
 import { Spin } from "antd";
 import { connect } from "dva";
-import Article from "./Article";
+import Article from "./components/Article";
+import Styles from "./components/Article.less";
 
-@connect(({ demo }) => ({ demoData: demo })) // dva连接数据
 class ArticlePage extends React.Component {
-  needSpin = true;
+  componentDidMount() {
+    const { dispatch, type } = this.props;
+    dispatch({ type: "article/getArticle", payload: type });
+  }
 
   render() {
-    const { dispatch, demoData } = this.props; // 使用数据
-    console.log(dispatch);
-    console.log(demoData);
-    return this.needSpin ? <Spin /> : <Article />;
+    const { articleData } = this.props;
+    const { loading, data } = articleData;
+    return loading ? (
+      <div className={Styles.spin_container}>
+        <Spin size="large" />
+      </div>
+    ) : (
+      data.map((v, k) => (
+        <Article data={v} key={k} dispatch={this.props.dispatch} />
+      ))
+    );
   }
 }
 
-export default ArticlePage;
+export default connect(({ article }) => ({ articleData: article }))(
+  ArticlePage
+);

@@ -1,24 +1,29 @@
 .root {
+  color: #555;
   font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
-  p {
-    font-family: inherit;
-    font-size: 14px;
-    color: grey;
-    margin: 0;
-  }
-  font-family: inherit;
   font-size: 22px;
-  color: #333;
   border-radius: 4px;
   margin-bottom: 6px;
   background-color: #fff;
+  p {
+    font-family: inherit;
+    font-size: 14px;
+    margin: 0;
+  }
   .top {
     font-family: inherit;
     padding: 10px 20px;
-    p {
+    div {
+      font-size: 14px;
+      color: #555;
       margin-top: 4px;
       margin-bottom: 14px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
     }
     border-bottom: 1px solid #f4f4f4;
   }
@@ -30,12 +35,16 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    tag {
+      color: #444;
+    }
     .pull_right {
       display: flex;
       flex-direction: row;
       justify-content: flex-end;
       p {
         margin-left: 10px;
+        color: #777;
       }
     }
   }
@@ -46,5 +55,15 @@
   color: #000;
   background-color: #fff;
   padding: 24px 32px;
+  border-radius: 4px;
+}
+
+.spin_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
   border-radius: 4px;
 }

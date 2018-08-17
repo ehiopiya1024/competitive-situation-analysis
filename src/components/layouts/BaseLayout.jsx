@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Layout, Icon, Drawer, Switch, Affix } from "antd";
+import { Layout } from "antd";
 
 import TopHeader from "../header/TopHeader";
 import BaseMenu from "../menu/BaseMenu";
