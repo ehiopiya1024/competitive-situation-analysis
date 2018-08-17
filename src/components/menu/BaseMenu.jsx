@@ -14,15 +14,19 @@ const keys = [
   "/articles/thought"
 ];
 
-const BaseMenu = ({ collapsed, location }) => (
-  <Sider collapsed={collapsed}>
-    <div className={styles.root}>
+const BaseMenu = ({ collapsed, location, skin }) => (
+  <Sider
+    className={styles.root}
+    collapsed={collapsed}
+    style={{ backgroundColor: skin.leftColor }}
+  >
+    <div>
       <Menu
         defaultSelectedKeys={[
           location.pathname === "/" ? "/articles/home" : location.pathname
         ]}
         mode="vertical"
-        theme="dark"
+        theme={skin.theme}
       >
         <MenuItemGroup key="g1" title="文档分类">
           <Menu.Item key={keys[0]}>

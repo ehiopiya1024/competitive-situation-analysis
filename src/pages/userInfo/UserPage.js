@@ -1,3 +1,5 @@
+import { message } from "antd";
+
 const moment = require("moment");
 
 const collectData = [
@@ -157,43 +159,35 @@ const f = {
     const username = document.getElementById("username");
     const headImg = document.getElementById("headImg");
     const mail = document.getElementById("mail");
-    const m1 = document.getElementById("msg1");
     const mailReg = /^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
     if (mail.value !== "" && !mailReg.test(mail.value)) {
-      m1.innerHTML = "<font color='red'>邮件地址格式错误！</font>";
+      message.error("邮件地址格式错误！", 1.5);
     } else {
       /**
        * 修改用户信息  to do code
        * */
-      m1.innerHTML = "<font color='#10df09'>修改成功！</font>";
-      setTimeout(() => {
-        m1.innerHTML = "";
-        username.value = "";
-        headImg.value = "";
-        mail.value = "";
-      }, 1200);
+      message.success("修改成功！", 1.5);
+      username.value = "";
+      headImg.value = "";
+      mail.value = "";
     }
   },
   submitPassword: () => {
     const p1 = document.getElementById("password1");
     const p2 = document.getElementById("password2");
-    const m2 = document.getElementById("msg2");
     if (p1.value === "" || p1.value === null) {
-      m2.innerHTML = "<font color='red'>输入的内容不允许为空！</font>";
+      message.error("输入的内容不允许为空！", 1.5);
     } else if (p2.value === null || p2.value === "") {
-      m2.innerHTML = "<font color='red'>输入的内容不允许为空！</font>";
+      message.error("输入的内容不允许为空！", 1.5);
     } else if (p1.value !== p2.value) {
-      m2.innerHTML = "<font color='red'>两次输入的内容不一致！</font>";
+      message.error("两次输入的内容不一致！", 1.5);
     } else {
       /**
        * 修改密码  to do code
        * */
-      m2.innerHTML = "<font color='#10df09'>修改成功！</font>";
-      setTimeout(() => {
-        m2.innerHTML = "";
-        p1.value = "";
-        p2.value = "";
-      }, 1200);
+      message.success("修改成功！", 1.5);
+      p1.value = "";
+      p2.value = "";
     }
   }
 };

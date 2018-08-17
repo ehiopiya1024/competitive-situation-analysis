@@ -63,6 +63,7 @@ class UserInfo extends React.Component {
             <Form.Item>
               <Input.Group style={{ marginBottom: 6 }}>
                 <Input
+                  className={styles.inputLeft}
                   style={{ width: "13%" }}
                   disabled
                   prefix={<Icon type="environment" />}
@@ -123,7 +124,6 @@ class UserInfo extends React.Component {
                   placeholder="邮件地址"
                 />
               </Input.Group>
-              <msg id="msg1" />
               <Button
                 type="primary"
                 style={{ width: "100%" }}
@@ -161,7 +161,6 @@ class UserInfo extends React.Component {
                   placeholder="确认密码"
                 />
               </Input.Group>
-              <msg id="msg2" />
               <Button
                 type="primary"
                 style={{ width: "100%" }}

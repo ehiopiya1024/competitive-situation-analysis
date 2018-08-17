@@ -1,6 +1,88 @@
 .root {
+  .top {
+    width: 100%;
+    overflow: hidden;
+    .topLeft {
+      width: 98%;
+      display: inline-block;
+    }
+    .set {
+      width: 2%;
+      float: right;
+      color: #666;
+      font-size: 18px;
+      line-height: 58px;
+      background-color: #fff;
+    }
+  }
   .content {
     margin: 24px;
-    min-height: calc(~'100% - 64px - 24px - 24px');
+    min-height: calc(~"100% - 64px - 24px - 24px");
   }
+}
+
+.setting {
+  .settingLayout {
+    display: flex;
+    justify-content: space-between;
+    line-height: 20px;
+  }
+  .settingTitle {
+    color: #222;
+    font-size: 18px;
+    font-weight: 100;
+  }
+  .settingContent {
+    color: #aaa;
+    font-size: 12px;
+  }
+}
+
+.skinNode {
+  .part {
+    float: left;
+    margin-right: 6px;
+    margin-bottom: 6px;
+
+    .title {
+      color: #444;
+    }
+    .skin {
+      height: 35px;
+      width: 60px;
+      background-color: #3c8dbc;
+      box-sizing: border-box;
+      padding-top: 7px;
+      border: 1px solid #ccc;
+      overflow: hidden;
+      div {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        display: inline-block;
+      }
+      .left {
+        height: 28px;
+        width: 8px;
+        box-sizing: border-box;
+        background-color: #444;
+      }
+      .right {
+        height: 28px;
+        width: 50px;
+        border-left: 1px solid #ccc;
+        border-top: 1px solid #ccc;
+        background-color: white;
+      }
+      :hover {
+        cursor: pointer;
+        background-color: #eee;
+        opacity: 0.9;
+      }
+    }
+  }
+}
+
+.fixedStyle {
+  height: 100px;
 }
