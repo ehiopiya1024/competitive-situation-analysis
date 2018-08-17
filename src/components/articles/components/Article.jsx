@@ -32,7 +32,11 @@ class Article extends React.Component {
             {data.tags.map((v, k) => (
               <Link key={k} to={`/tags/${v}`}>
                 <Tag
-                  onClick={this.props.handleTag ? this.props.handleTag : null}
+                  onClick={
+                    this.props.handleTag
+                      ? this.props.handleTag.bind(this, [v])
+                      : null
+                  }
                 >
                   <Icon type="tag" />
                   {v}

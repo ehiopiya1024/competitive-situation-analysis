@@ -19,6 +19,8 @@ const articles = [
   }
 ];
 
+const associatedTags = ["tag1", "tag1", "tag1", "tag1", "tag1"];
+
 const mock = {
   "GET /api/fetch": (req, res) => {
     console.log(req.query);
@@ -61,19 +63,11 @@ const mock = {
 
   "Get /api/getTagData": (req, res) => {
     console.log(req.query);
-    let data;
-    const { tagName } = req.query;
-    if (tagName === "Ericsson") {
-      data = articles;
-    } else {
-      data = articles.filter(e => {
-        return e.tags.indexOf(tagName) > -1;
-      });
-    }
     setTimeout(() => {
       res.status(200).json({
         errCode: "0",
-        data
+        data: articles,
+        associatedTags
       });
     }, 400);
   }
