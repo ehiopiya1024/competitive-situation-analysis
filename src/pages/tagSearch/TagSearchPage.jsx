@@ -63,12 +63,10 @@ class TagSearchPage extends React.Component {
       <div />
     );
 
-    return loading ? (
-      <CenterSpin />
-    ) : (
-      <Row gutter={70}>
+    return (
+      <Row gutter={50}>
         <Col span={16} style={{ height: "100%" }}>
-          {article}
+          {loading ? <CenterSpin padding={true} /> : article}
         </Col>
         <Col span={7}>
           <TagBox
@@ -77,7 +75,7 @@ class TagSearchPage extends React.Component {
             handleChange={this.handleChangeCurrentTag}
             up={false}
           />
-          {associatedTag}
+          {loading ? null : associatedTag}
         </Col>
       </Row>
     );

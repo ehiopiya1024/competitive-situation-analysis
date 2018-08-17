@@ -17,7 +17,7 @@ export default {
     *getData({ title }, { call, put }) {
       yield put({ type: "changeTitle", title });
       yield put({ type: "changeLoad", loading: true });
-      const { data } = yield call(getContent, title);
+      const { data } = yield call(getContent, { title });
       yield put({ type: "changeContent", content: data.content });
       yield put({ type: "changeLoad", loading: false });
     }

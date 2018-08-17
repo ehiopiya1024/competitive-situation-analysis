@@ -37,7 +37,11 @@ function RouterConfig({ history }) {
           <Route path="/user" component={UserInfo} exact />
 
           <Route path="/tags/:tagName" component={TagSearchPage} />
-          <Route path="/article/:title" component={ArticlePage} />
+          <Route
+            path="/article/:title"
+            component={ArticlePage}
+            history={history}
+          />
         </BaseLayout>
       </Switch>
     </Router>
