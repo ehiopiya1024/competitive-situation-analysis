@@ -3,7 +3,7 @@ import { Row, Col, message } from "antd";
 import { connect } from "dva";
 import Article from "../../components/articles/components/Article";
 import TagBox from "./components/TagBox";
-import CenterSpin from "./components/CenterSpin";
+import CenterSpin from "../../components/centerSpin/CenterSpin";
 
 class TagSearchPage extends React.Component {
   componentDidMount() {

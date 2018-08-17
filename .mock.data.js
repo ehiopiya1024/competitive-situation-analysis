@@ -70,6 +70,16 @@ const mock = {
         associatedTags
       });
     }, 400);
+  },
+
+  "Get /api/search": (req, res) => {
+    console.log(req.query);
+    setTimeout(() => {
+      res.status(200).json({
+        errCode: "0",
+        data: articles
+      });
+    }, 500);
   }
 };
 module.exports = mock;

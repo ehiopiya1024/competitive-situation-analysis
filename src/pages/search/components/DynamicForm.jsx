@@ -19,18 +19,22 @@ let uuid = 1;
 const item = (icon, click, k) => (
   <Row gutter={8} key={k}>
     <Col span={4}>
-      <Select defaultValue="AND">{getOptions(["AND", "OR", "NOT"])}</Select>
+      <Select name={`req-${k}-1`} defaultValue="AND">
+        {getOptions(["AND", "OR", "NOT"])}
+      </Select>
     </Col>
     <Col span={4}>
-      <Select defaultValue="标题">
+      <Select name={`req-${k}-2`} defaultValue="标题">
         {getOptions(["标题", "标签", "全文"])}
       </Select>
     </Col>
     <Col span={4}>
-      <Select defaultValue="词组">{getOptions(["词组", "非词组"])}</Select>
+      <Select name={`req-${k}-3`} defaultValue="词组">
+        {getOptions(["词组", "非词组"])}
+      </Select>
     </Col>
     <Col span={11}>
-      <Input placeholder="请输入..." />
+      <Input name={`req-${k}-4`} placeholder="请输入..." />
     </Col>
     <Col span={1}>
       <Icon

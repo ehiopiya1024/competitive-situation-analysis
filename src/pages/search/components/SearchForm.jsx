@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Row, Col, Button, Select, DatePicker } from "antd";
 import DynamicForm from "./DynamicForm";
+import Styles from "./SearchForm.less";
 
 const FormItem = Form.Item;
 const { Option } = Select;
@@ -20,53 +21,63 @@ const formItemLayout = {
   },
   colon: false
 };
+const getOptions = data => {
+  const children = [];
+  for (let i = 0; i < data.length; i += 1) {
+    children.push(
+      <Option vlaue={data[i]} key={i}>
+        {data[i]}
+      </Option>
+    );
+  }
+  return children;
+};
 
 class SearchForm extends React.Component {
+  /* handleSearch = e => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      console.log("Received values of form: ", values);
+    });
+  };  */
+
   handleSearch = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       console.log("Received values of form: ", values);
     });
+    console.log(e);
+    console.log(this.props.form);
+    const { dispatch } = this.props;
+    dispatch({ type: "search/getData", requestment: "nothing." });
   };
 
   handleReset = () => {
     this.props.form.resetFields();
   };
 
-  getOptions(data) {
-    const children = [];
-    console.log(this);
-    for (let i = 0; i < data.length; i += 1) {
-      children.push(
-        <Option vlaue={data[i]} key={i}>
-          {data[i]}
-        </Option>
-      );
-    }
-    return children;
-  }
-
-  getFields() {
-    return (
-      <Col span={24}>
-        <FormItem {...formItemLayout} label="文档类型">
-          <Select style={{ width: "96%" }} defaultValue="全部">
-            {this.getOptions(options)}
-          </Select>
-        </FormItem>
-        <FormItem {...formItemLayout} label="文档时间">
-          <RangePicker />
-        </FormItem>
-        <DynamicForm formItemLayout={formItemLayout} />
-      </Col>
-    );
-  }
-
   render() {
     return (
-      <div>
+      <div className={Styles.root}>
         <Form onSubmit={this.handleSearch}>
-          <Row gutter={24}>{this.getFields()}</Row>
+          <Row gutter={24}>
+            {" "}
+            <Col span={24}>
+              <FormItem {...formItemLayout} label="文档类型">
+                <Select
+                  name="articleType"
+                  style={{ width: "96%" }}
+                  defaultValue="全部"
+                >
+                  {getOptions(options)}
+                </Select>
+              </FormItem>
+              <FormItem {...formItemLayout} label="文档时间">
+                <RangePicker name="timeRange" />
+              </FormItem>
+              <DynamicForm formItemLayout={formItemLayout} />
+            </Col>
+          </Row>
           <Row>
             <Col span={24} style={{ textAlign: "right" }}>
               <Button type="primary" htmlType="submit">
