@@ -45,7 +45,9 @@ class TopHeader extends React.Component {
           <Button size="small">
             <Link to="/user">用户账户</Link>
           </Button>
-          <Button size="small">退出系统</Button>
+          <Button size="small">
+            <Link to="/login">退出系统</Link>
+          </Button>
         </div>
       </div>
     );

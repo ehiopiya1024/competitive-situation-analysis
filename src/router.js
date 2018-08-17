@@ -20,8 +20,9 @@ import ArticlePage from "./pages/article/ArticlePage";
 function RouterConfig({ history }) {
   return (
     <Router history={history}>
-      <BaseLayout location={history.location}>
-        <Switch>
+      <Switch>
+        <Route path="/login" component={Login} exact />
+        <BaseLayout location={history.location}>
           <Route path="/" render={() => <Redirect to="/home" />} exact />
           <Route path="/home" component={HomePage} exact />
           <Route path="/literature" component={LiteraturePage} exact />
@@ -34,12 +35,11 @@ function RouterConfig({ history }) {
           <Route path="/search" component={SearchPage} exact />
 
           <Route path="/user" component={UserInfo} exact />
-          <Route path="/login" component={Login} exact />
 
           <Route path="/tags/:tagName" component={TagSearchPage} />
           <Route path="/article/:title" component={ArticlePage} />
-        </Switch>
-      </BaseLayout>
+        </BaseLayout>
+      </Switch>
     </Router>
   );
 }

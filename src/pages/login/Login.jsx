@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Form, Input, Button } from "antd";
 import styles from "./Login.less";
 
@@ -12,7 +13,9 @@ const Login = () => (
       <Form className={styles.loginForm}>
         <Input type="text" placeholder="Email" />
         <Input type="password" placeholder="Password" />
-        <Button type="primary">登录</Button>
+        <Button type="primary">
+          <Link to="/user">登录</Link>
+        </Button>
       </Form>
     </div>
   </div>
