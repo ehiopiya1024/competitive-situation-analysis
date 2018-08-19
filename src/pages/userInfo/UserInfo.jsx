@@ -1,63 +1,77 @@
 import React from "react";
-import { Form, Icon, Timeline, Input, Button, Select } from "antd";
-import { Link } from "react-router-dom";
+import { connect } from "dva";
+import { Form, Icon, Input, Button, Select, message } from "antd";
 import styles from "./UserPage.less";
-import f from "./UserPage";
+import CollectItem from "./components/CollectItem";
+import InputItem from "./components/InputItem";
+
+let apartment = "";
 
 class UserInfo extends React.Component {
-  constructor(props) {
-    super();
-    this.state = {
-      collectDataNew: props.collectDataNew || [],
-      user: props.user || {}
-    };
-  }
+  getApartmentValue = value => {
+    apartment = value;
+    console.log(apartment);
+  };
+
+  submitInfo = () => {
+    const username = document.getElementById("username");
+    const headImg = document.getElementById("headImg");
+    const mail = document.getElementById("mail");
+    const mailReg = /^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+    if (mail.value !== "" && !mailReg.test(mail.value)) {
+      message.error("邮件地址格式错误！", 1.5);
+    } else {
+      /**
+       * 修改用户信息  to do code
+       * */
+      message.success("修改成功！", 1.5);
+      username.value = "";
+      headImg.value = "";
+      mail.value = "";
+    }
+  };
+
+  submitPassword = () => {
+    const p1 = document.getElementById("password1");
+    const p2 = document.getElementById("password2");
+    if (p1.value === "" || p1.value === null) {
+      message.error("输入的内容不允许为空！", 1.5);
+    } else if (p2.value === null || p2.value === "") {
+      message.error("输入的内容不允许为空！", 1.5);
+    } else if (p1.value !== p2.value) {
+      message.error("两次输入的内容不一致！", 1.5);
+    } else {
+      /**
+       * 修改密码  to do code
+       * */
+      message.success("修改成功！", 1.5);
+      p1.value = "";
+      p2.value = "";
+    }
+  };
 
   componentDidMount() {
-    /**
-     * fetch TODO
-     */
-    const user = {
-      username: "Alexander Pierce",
-      headImg:
-        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534556865&di=4e32109595745e1b26b8306a745dc505&imgtype=jpg&er=1&src=http%3A%2F%2Ftx.haiqq.com%2Fuploads%2Fallimg%2F150401%2F1954212091-9.jpg",
-      apartment: "Web Developer",
-      color: "#870f68"
-    };
-    this.setState({ collectDataNew: f.collectDataNew(), user });
+    if (!this.props.match) return;
+    const { dispatch } = this.props;
+    dispatch({
+      type: "userpage/getData",
+      user: { userId: this.props.match.params.userId }
+    });
   }
 
   render() {
-    const collectItem = this.state.collectDataNew.map((item, index) => {
-      const articleNode = item.articles.map((article, i) => (
-        <Timeline.Item key={`collectItemarticle-${i}`}>
-          <div className={styles.articlePart}>
-            <div className={styles.top}>
-              <Link to="/" className={styles.title}>
-                {article.title}
-              </Link>
-              <p className={styles.collectTime}>{article.collectTime}</p>
-            </div>
-            <p className={styles.content}>{article.content}</p>
-          </div>
-        </Timeline.Item>
-      ));
-      return (
-        <Timeline key={`collectItemNode-${index}`}>
-          <div>{item.date}</div>
-          {articleNode}
-        </Timeline>
-      );
-    });
+    const { userpage } = this.props;
+    const { collectDataNew, user } = userpage;
+
     return (
       <div className={styles.root}>
         {/* 左边 */}
         <div className={styles.left}>
           <div className={styles.avaterBorder}>
-            <img className={styles.avatar} src={this.state.user.headImg} />
+            <img className={styles.avatar} src={user.headImg} />
           </div>
-          <div className={styles.username}>{this.state.user.username}</div>
-          <div className={styles.apartment}>{this.state.user.apartment}</div>
+          <div className={styles.username}>{user.username}</div>
+          <div className={styles.apartment}>{user.apartment}</div>
           <div className={styles.line} />
           <Form>
             <Form.Item>
@@ -71,7 +85,7 @@ class UserInfo extends React.Component {
                 <Select
                   name="apartment"
                   id="apartment"
-                  onChange={f.handleChange}
+                  onChange={this.getApartmentValue}
                   className={styles.select}
                   style={{ width: "87%", margin: -3, marginLeft: 1 }}
                 >
@@ -82,89 +96,55 @@ class UserInfo extends React.Component {
                   <Select.Option value="财务部">财务部</Select.Option>
                 </Select>
               </Input.Group>
-              <Input.Group style={{ marginBottom: 6 }}>
-                <Input
-                  style={{ width: "13%" }}
-                  disabled
-                  prefix={<Icon type="user" />}
-                />
-                <Input
-                  type="text"
-                  id="username"
-                  name="username"
-                  style={{ width: "87%" }}
-                  placeholder="用户名"
-                />
-              </Input.Group>
-              <Input.Group style={{ marginBottom: 6 }}>
-                <Input
-                  style={{ width: "13%" }}
-                  disabled
-                  prefix={<Icon type="file" />}
-                />
-                <Input
-                  type="file"
-                  id="headImg"
-                  name="headImg"
-                  style={{ width: "87%" }}
-                  placeholder="头像"
-                />
-              </Input.Group>
-              <Input.Group style={{ marginBottom: 6 }}>
-                <Input
-                  style={{ width: "13%" }}
-                  disabled
-                  prefix={<Icon type="mail" />}
-                />
-                <Input
-                  type="text"
-                  id="mail"
-                  name="mail"
-                  style={{ width: "87%" }}
-                  placeholder="邮件地址"
-                />
-              </Input.Group>
+
+              <InputItem
+                IconType="user"
+                placeholder="用户名"
+                type="text"
+                name="username"
+                id="username"
+              />
+              <InputItem
+                IconType="file"
+                placeholder="头像"
+                type="file"
+                name="headImg"
+                id="headImg"
+              />
+              <InputItem
+                IconType="mail"
+                placeholder="邮件地址"
+                type="text"
+                name="mail"
+                id="mail"
+              />
               <Button
                 type="primary"
                 style={{ width: "100%" }}
-                onClick={f.submitInfo}
+                onClick={this.submitInfo}
               >
                 提交
               </Button>
             </Form.Item>
             <div className={styles.line} />
             <Form.Item>
-              <Input.Group>
-                <Input
-                  style={{ width: "13%" }}
-                  disabled
-                  prefix={<Icon type="key" />}
-                />
-                <Input
-                  type="text"
-                  id="password1"
-                  name="password"
-                  style={{ width: "87%" }}
-                  placeholder="密码"
-                />
-              </Input.Group>
-              <Input.Group>
-                <Input
-                  style={{ width: "13%" }}
-                  disabled
-                  prefix={<Icon type="key" />}
-                />
-                <Input
-                  id="password2"
-                  type="password"
-                  style={{ width: "87%" }}
-                  placeholder="确认密码"
-                />
-              </Input.Group>
+              <InputItem
+                IconType="key"
+                placeholder="密码"
+                type="password"
+                name="password"
+                id="password1"
+              />
+              <InputItem
+                IconType="key"
+                placeholder="确认密码"
+                type="password"
+                id="password2"
+              />
               <Button
                 type="primary"
                 style={{ width: "100%" }}
-                onClick={f.submitPassword}
+                onClick={this.submitPassword}
               >
                 修改密码
               </Button>
@@ -176,11 +156,13 @@ class UserInfo extends React.Component {
           <h2>
             <strong>收藏文档</strong>
           </h2>
-          <div>{collectItem}</div>
+          <div>
+            <CollectItem collectDataNew={collectDataNew} />
+          </div>
         </div>
       </div>
     );
   }
 }
 
-export default UserInfo;
+export default connect(({ userpage }) => ({ userpage }))(UserInfo);

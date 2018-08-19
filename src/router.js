@@ -34,7 +34,7 @@ function RouterConfig({ history }) {
           <Route path="/demo" component={DemoPage} exact />
           <Route path="/search" component={SearchPage} exact />
 
-          <Route path="/user" component={UserInfo} exact />
+          <Route path="/userpage/:userId" component={UserInfo} exact />
 
           <Route path="/tags/:tagName" component={TagSearchPage} />
           <Route

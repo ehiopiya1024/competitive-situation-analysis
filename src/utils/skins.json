@@ -1,0 +1,46 @@
+{
+  "skins": [
+    {
+      "skinId": "1",
+      "title": "Red",
+      "theme": "dark",
+      "topColor": "#dd4b39",
+      "leftColor": "#001529"
+    },
+    {
+      "skinId": "2",
+      "title": "blue",
+      "theme": "dark",
+      "topColor": "#3c8dbc",
+      "leftColor": "#001529"
+    },
+    {
+      "skinId": "3",
+      "title": "White",
+      "theme": "dark",
+      "topColor": "#f9fafc",
+      "leftColor": "#001529"
+    },
+    {
+      "skinId": "4",
+      "title": "RedLight",
+      "theme": "light",
+      "topColor": "#dd4b39",
+      "leftColor": "#ffffff"
+    },
+    {
+      "skinId": "5",
+      "title": "blueLight",
+      "theme": "light",
+      "topColor": "#3c8dbc",
+      "leftColor": "#ffffff"
+    },
+    {
+      "skinId": "6",
+      "title": "WhiteLight",
+      "theme": "light",
+      "topColor": "#f9fafc",
+      "leftColor": "#ffffff"
+    }
+  ]
+}

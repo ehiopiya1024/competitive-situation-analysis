@@ -1,56 +1,11 @@
 import React, { Component } from "react";
 import { Layout, Icon, Drawer, Switch, Affix } from "antd";
-
 import TopHeader from "../header/TopHeader";
 import BaseMenu from "../menu/BaseMenu";
 import styles from "./BaseLayout.less";
+import { skins } from "../../utils/skins.json";
 
 const { Content } = Layout;
-
-const skins = [
-  {
-    skinId: "1",
-    title: "Red",
-    theme: "dark",
-    topColor: "#dd4b39",
-    leftColor: "#001529"
-  },
-  {
-    skinId: "2",
-    title: "blue",
-    theme: "dark",
-    topColor: "#3c8dbc",
-    leftColor: "#001529"
-  },
-  {
-    skinId: "3",
-    title: "White",
-    theme: "dark",
-    topColor: "#f9fafc",
-    leftColor: "#001529"
-  },
-  {
-    skinId: "4",
-    title: "RedLight",
-    theme: "light",
-    topColor: "#dd4b39",
-    leftColor: "#ffffff"
-  },
-  {
-    skinId: "5",
-    title: "blueLight",
-    theme: "light",
-    topColor: "#3c8dbc",
-    leftColor: "#ffffff"
-  },
-  {
-    skinId: "6",
-    title: "WhiteLight",
-    theme: "light",
-    topColor: "#f9fafc",
-    leftColor: "#ffffff"
-  }
-];
 
 class BaseLayout extends Component {
   constructor(props) {
@@ -110,28 +65,34 @@ class BaseLayout extends Component {
         <a href="#" className={styles.setting} onClick={this.show}>
           <Icon type="setting" />
         </a>
-        <div>{this.getRightMenu()}</div>
       </div>
     </div>
   );
 
   skinNode = () =>
-    skins.map((item, index) => (
-      <div
-        className={styles.part}
-        onClick={this.changeSkin.bind(this, item.skinId)}
-        key={`skinNode-${index}`}
-      >
-        <span className={styles.title}>{item.title}</span>
-        <div className={styles.skin} style={{ backgroundColor: item.topColor }}>
+    skins ? (
+      skins.map((item, index) => (
+        <div
+          className={styles.part}
+          onClick={this.changeSkin.bind(this, item.skinId)}
+          key={`skinNode-${index}`}
+        >
+          <span className={styles.title}>{item.title}</span>
           <div
-            className={styles.left}
-            style={{ backgroundColor: item.leftColor }}
-          />
-          <div className={styles.right} />
+            className={styles.skin}
+            style={{ backgroundColor: item.topColor }}
+          >
+            <div
+              className={styles.left}
+              style={{ backgroundColor: item.leftColor }}
+            />
+            <div className={styles.right} />
+          </div>
         </div>
-      </div>
-    ));
+      ))
+    ) : (
+      <div />
+    );
 
   getRightMenu = () => (
     <div>
@@ -146,7 +107,7 @@ class BaseLayout extends Component {
           <div>
             <p className={styles.settingTitle}>布局设置</p>
             <div className={styles.settingLayout}>
-              <span>不固定布局</span>
+              <span>固定布局</span>
               <Switch
                 onChange={this.onChangeLayout}
                 checked={this.state.fixed}
@@ -155,7 +116,7 @@ class BaseLayout extends Component {
               />
             </div>
             <div className={styles.settingContent}>
-              默认固定布局, 导航栏将保持固定, 只有文档内容区域滚动，激活则取消.
+              固定布局, 即导航栏将保持固定, 只有文档内容区域滚动，激活则取消.
             </div>
           </div>
           <br />
@@ -176,6 +137,9 @@ class BaseLayout extends Component {
 
     return (
       <Layout className={styles.root}>
+        <div>
+          {this.state.visible ? <div>{this.getRightMenu()}</div> : <div />}
+        </div>
         <Layout>
           <div>
             {this.state.fixed ? (

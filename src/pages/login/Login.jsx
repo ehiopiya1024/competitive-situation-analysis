@@ -34,7 +34,7 @@ class NormalLoginForm extends React.Component {
               />
             </Form.Item>
             <Button type="primary" htmlType="submit">
-              <Link to="/user">登录</Link>
+              <Link to="/userpage/:userId">登录</Link>
             </Button>
           </Form>
         </div>
