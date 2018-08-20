@@ -7,7 +7,9 @@ export default {
   state: {
     loading: false,
     data: [],
-    likeResult: "0"
+    likeResult: "0",
+    showNumber: "0",
+    total: "0"
   },
   effects: {
     *getArticle({ payload }, { call, put }) {
