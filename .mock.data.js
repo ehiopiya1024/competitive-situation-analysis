@@ -21,8 +21,7 @@ const articles = [
 
 const content = {
   title: "Vision",
-  content:
-    `　李逵和宋江<br />黑旋风李逵，虽然勇武，一双板斧，无人可挡，但李逵的本事还是逊色武松，李逵也称不得梁山顶尖高手。<br />李逵本是沂州沂水县百丈村人，后流落江州，成为江州牢城营的小牢子，给江州两院押牢节级戴宗做小弟，但李逵这个人，为人粗暴，蛮横贪赌，戴宗对于李逵也不是很重视，甚至于有些厌烦李逵这个人。`
+  content: `　李逵和宋江<br />黑旋风李逵，虽然勇武，一双板斧，无人可挡，但李逵的本事还是逊色武松，李逵也称不得梁山顶尖高手。<br />李逵本是沂州沂水县百丈村人，后流落江州，成为江州牢城营的小牢子，给江州两院押牢节级戴宗做小弟，但李逵这个人，为人粗暴，蛮横贪赌，戴宗对于李逵也不是很重视，甚至于有些厌烦李逵这个人。`
 };
 
 const associatedTags = ["tag1", "tag1", "tag1", "tag1", "tag1"];
@@ -158,6 +157,16 @@ const mock = {
       res.status(200).json({
         errCode: "0",
         data: content
+      });
+    }, 500);
+  },
+
+  "Get /api/pullArticle": (req, res) => {
+    console.log(req.query);
+    setTimeout(() => {
+      res.status(200).json({
+        errCode: "0",
+        data: articles
       });
     }, 500);
   },
