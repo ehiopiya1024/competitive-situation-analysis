@@ -3,8 +3,7 @@ import { Icon, Input } from "antd";
 
 class InputItem extends React.Component {
   render() {
-    const { IconType, placeholder, type, name, id } = this.props;
-
+    const { IconType, placeholder, type, name, id, defaultValue } = this.props;
     return (
       <Input.Group style={{ marginBottom: 6 }}>
         <Input
@@ -18,6 +17,7 @@ class InputItem extends React.Component {
           name={name}
           style={{ width: "87%" }}
           placeholder={placeholder}
+          defaultValue={defaultValue}
         />
       </Input.Group>
     );

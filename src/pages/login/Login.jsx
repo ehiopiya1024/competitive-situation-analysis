@@ -24,8 +24,6 @@ class NormalLoginForm extends React.Component {
       setTimeout(() => {
         const { login } = this.props;
         const { user } = login;
-        console.log("user:");
-        console.log(user);
         if (user === null || user === {} || JSON.stringify(user) === "{}") {
           message.error("邮件地址或密码错误！", 1.5);
         } else {

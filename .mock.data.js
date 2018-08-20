@@ -84,10 +84,22 @@ const user = {
   username: "Alexander Pierce",
   headImg:
     "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534556865&di=4e32109595745e1b26b8306a745dc505&imgtype=jpg&er=1&src=http%3A%2F%2Ftx.haiqq.com%2Fuploads%2Fallimg%2F150401%2F1954212091-9.jpg",
-  apartment: "Web Developer Apart",
+  apartment: "开发部",
   password: "1",
   skinsId: "3",
   fixed: true
+};
+
+const user2 = {
+  userId: "2",
+  email: "2@2.cn",
+  username: "2Alexander Pierce",
+  headImg:
+    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534556865&di=4e32109595745e1b26b8306a745dc505&imgtype=jpg&er=1&src=http%3A%2F%2Ftx.haiqq.com%2Fuploads%2Fallimg%2F150401%2F1954212091-9.jpg",
+  apartment: "市场部",
+  password: "2",
+  skinsId: "2",
+  fixed: false
 };
 
 const mock = {
@@ -183,6 +195,22 @@ const mock = {
     res.status(200).json({
       errCode: "0",
       data: user
+    });
+  },
+
+  "Post /api/modifyUserInfo": (req, res) => {
+    console.log("modifyUserInfo:---" + JSON.stringify(req.query));
+    res.status(200).json({
+      errCode: "0",
+      data: user2
+    });
+  },
+
+  "Post /api/modifyUserPassword": (req, res) => {
+    console.log("modifyUserPassword:---" + JSON.stringify(req.query));
+    res.status(200).json({
+      errCode: "0",
+      data: user2
     });
   }
 };

@@ -21,13 +21,27 @@ class UserInfo extends React.Component {
     if (mail.value !== "" && !mailReg.test(mail.value)) {
       message.error("邮件地址格式错误！", 1.5);
     } else {
-      /**
-       * 修改用户信息  to do code
-       * */
+      const { dispatch } = this.props;
+      dispatch({
+        type: "userpage/modifyUserInfo",
+        user: {
+          apartment,
+          username: username.value,
+          headImg: headImg.value,
+          mail: mail.value
+        }
+      });
+      setTimeout(() => {
+        const { userpage } = this.props;
+        const { user } = userpage;
+        username.value = user.username;
+        /**
+         * 头像上传
+         */
+        // headImg.value = user.headImg;
+        mail.value = user.email;
+      }, 700);
       message.success("修改成功！", 1.5);
-      username.value = "";
-      headImg.value = "";
-      mail.value = "";
     }
   };
 
@@ -41,10 +55,14 @@ class UserInfo extends React.Component {
     } else if (p1.value !== p2.value) {
       message.error("两次输入的内容不一致！", 1.5);
     } else {
-      /**
-       * 修改密码  to do code
-       * */
-      message.success("修改成功！", 1.5);
+      const { dispatch } = this.props;
+      dispatch({
+        type: "userpage/modifyUserPassword",
+        user: {
+          password: p1.value
+        }
+      });
+      message.success("密码修改成功！", 1.5);
       p1.value = "";
       p2.value = "";
     }
@@ -85,6 +103,7 @@ class UserInfo extends React.Component {
                 <Select
                   name="apartment"
                   id="apartment"
+                  defaultValue={user.apartment}
                   onChange={this.getApartmentValue}
                   className={styles.select}
                   style={{ width: "87%", margin: -3, marginLeft: 1 }}
@@ -103,6 +122,7 @@ class UserInfo extends React.Component {
                 type="text"
                 name="username"
                 id="username"
+                defaultValue={user.username}
               />
               <InputItem
                 IconType="file"
@@ -110,6 +130,7 @@ class UserInfo extends React.Component {
                 type="file"
                 name="headImg"
                 id="headImg"
+                defaultValue={user.headImg}
               />
               <InputItem
                 IconType="mail"
@@ -117,6 +138,7 @@ class UserInfo extends React.Component {
                 type="text"
                 name="mail"
                 id="mail"
+                defaultValue={user.email}
               />
               <Button
                 type="primary"

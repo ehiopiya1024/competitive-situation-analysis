@@ -31,6 +31,7 @@ class TopHeader extends React.Component {
             <img className={styles.avatar} src={user.headImg} />
           </Link>
           <div className={styles.username}>{user.username}</div>
+          <div className={styles.line} />
           <div className={styles.apartment}>{user.apartment}</div>
         </div>
         <div className={styles.menuButton}>

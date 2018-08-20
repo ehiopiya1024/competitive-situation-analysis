@@ -2,7 +2,7 @@ import apis from "./UserPageApi";
 
 const moment = require("moment");
 
-const { getUserInfo } = apis;
+const { getUserInfo, modifyUserInfo, modifyUserPassword } = apis;
 
 const collectDataSort = collectDataOld => {
   const compare = (a, b) =>
@@ -68,6 +68,14 @@ export default {
     *getData({ user }, { call, put }) {
       const { data, userObj } = yield call(getUserInfo, user.userId);
       yield put({ type: "changeState", data, userObj });
+    },
+    *modifyUserInfo({ user }, { call, put }) {
+      const { data } = yield call(modifyUserInfo, user);
+      yield put({ type: "changeUserState", data });
+    },
+    *modifyUserPassword({ user }, { call, put }) {
+      const { data } = yield call(modifyUserPassword, user);
+      yield put({ type: "changeUserState", data });
     }
   },
 
@@ -76,6 +84,10 @@ export default {
       ...state,
       collectDataNew: getCollectDataNew(data),
       user: userObj
+    }),
+    changeUserState: (state, { data }) => ({
+      ...state,
+      user: data
     })
   }
 };

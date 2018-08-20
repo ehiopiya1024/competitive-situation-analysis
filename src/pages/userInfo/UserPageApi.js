@@ -1,10 +1,10 @@
-import { get } from "../../utils/request";
+import { get, post } from "../../utils/request";
 
 const getUserInfo = userId => get("/getUserInfo", userId);
 
-const modifyUserInfo = user => get("/modifyUserInfo", user);
+const modifyUserInfo = user => post("/modifyUserInfo", user);
 
-const modifyUserPassword = user => get("/modifyUserPassword", user);
+const modifyUserPassword = user => post("/modifyUserPassword", user);
 
 export default {
   getUserInfo,
