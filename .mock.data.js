@@ -80,11 +80,11 @@ const collectData = [
 
 const user = {
   userId: "1",
+  email: "1@1.cn",
   username: "Alexander Pierce",
   headImg:
     "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534556865&di=4e32109595745e1b26b8306a745dc505&imgtype=jpg&er=1&src=http%3A%2F%2Ftx.haiqq.com%2Fuploads%2Fallimg%2F150401%2F1954212091-9.jpg",
   apartment: "Web Developer Apart",
-  color: "#870f68",
   password: "1",
   skinsId: "3",
   fixed: true
@@ -192,6 +192,14 @@ const mock = {
 
   "Get /api/getUser": (req, res) => {
     console.log("getUser:---" + req.query);
+    res.status(200).json({
+      errCode: "0",
+      data: user
+    });
+  },
+
+  "Post /api/postUserLogin": (req, res) => {
+    console.log("postUserLogin:---" + JSON.stringify(req.query));
     res.status(200).json({
       errCode: "0",
       data: user
