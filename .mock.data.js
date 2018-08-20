@@ -27,6 +27,70 @@ const content = {
 
 const associatedTags = ["tag1", "tag1", "tag1", "tag1", "tag1"];
 
+const collectData = [
+  {
+    articleId: "1",
+    title: "2016/1/1 ",
+    collectTime: "2016/1/1 00:00:00",
+    content:
+      "1.1。moke假数据-我是文章内容1我是文章内容1我是文章内容1我是文章内容1我是文章内容1我是文章内容1容1我是文章内容1我我是文章内容1我是"
+  },
+  {
+    articleId: "1",
+    title: "2016/1/1 ",
+    collectTime: "2016/1/1 00:00:01",
+    content: "1.2"
+  },
+  {
+    articleId: "2",
+    title: "2018-2-2",
+    collectTime: "2018-2-2 00:00:00",
+    content: "2"
+  },
+  {
+    articleId: "3",
+    title: "2017-1-1",
+    collectTime: "2017-1-1 00:00:00",
+    content: "3"
+  },
+  {
+    articleId: "4",
+    title: "2019/1/1 ",
+    collectTime: "2019/1/1 01:00:00",
+    content: "4.1"
+  },
+  {
+    articleId: "4",
+    title: "2019/1/1 ",
+    collectTime: "2019/1/1 02:00:00",
+    content: "4.2"
+  },
+  {
+    articleId: "5",
+    title: "2017-5-1",
+    collectTime: "2017-5-1 10:00:00",
+    content: "5.2"
+  },
+  {
+    articleId: "5",
+    title: "2017-5-1",
+    collectTime: "2017-5-1 00:00:01",
+    content: "5.1"
+  }
+];
+
+const user = {
+  userId: "1",
+  username: "Alexander Pierce",
+  headImg:
+    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534556865&di=4e32109595745e1b26b8306a745dc505&imgtype=jpg&er=1&src=http%3A%2F%2Ftx.haiqq.com%2Fuploads%2Fallimg%2F150401%2F1954212091-9.jpg",
+  apartment: "Web Developer Apart",
+  color: "#870f68",
+  password: "1",
+  skinsId: "3",
+  fixed: true
+};
+
 const mock = {
   "GET /api/fetch": (req, res) => {
     console.log(req.query);
@@ -96,6 +160,23 @@ const mock = {
         data: content
       });
     }, 500);
+  },
+
+  "Get /api/getUserInfo": (req, res) => {
+    console.log("getUserInfo:---" + req.query);
+    res.status(200).json({
+      errCode: "0",
+      data: collectData,
+      userObj: user
+    });
+  },
+
+  "Get /api/getUser": (req, res) => {
+    console.log("getUser:---" + req.query);
+    res.status(200).json({
+      errCode: "0",
+      data: user
+    });
   }
 };
 module.exports = mock;
