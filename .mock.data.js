@@ -21,8 +21,7 @@ const articles = [
 
 const content = {
   title: "Vision",
-  content:
-    `　李逵和宋江<br />黑旋风李逵，虽然勇武，一双板斧，无人可挡，但李逵的本事还是逊色武松，李逵也称不得梁山顶尖高手。<br />李逵本是沂州沂水县百丈村人，后流落江州，成为江州牢城营的小牢子，给江州两院押牢节级戴宗做小弟，但李逵这个人，为人粗暴，蛮横贪赌，戴宗对于李逵也不是很重视，甚至于有些厌烦李逵这个人。`
+  content: `　李逵和宋江<br />黑旋风李逵，虽然勇武，一双板斧，无人可挡，但李逵的本事还是逊色武松，李逵也称不得梁山顶尖高手。<br />李逵本是沂州沂水县百丈村人，后流落江州，成为江州牢城营的小牢子，给江州两院押牢节级戴宗做小弟，但李逵这个人，为人粗暴，蛮横贪赌，戴宗对于李逵也不是很重视，甚至于有些厌烦李逵这个人。`
 };
 
 const associatedTags = ["tag1", "tag1", "tag1", "tag1", "tag1"];
@@ -81,11 +80,11 @@ const collectData = [
 
 const user = {
   userId: "1",
+  email: "1@1.cn",
   username: "Alexander Pierce",
   headImg:
     "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534556865&di=4e32109595745e1b26b8306a745dc505&imgtype=jpg&er=1&src=http%3A%2F%2Ftx.haiqq.com%2Fuploads%2Fallimg%2F150401%2F1954212091-9.jpg",
   apartment: "Web Developer Apart",
-  color: "#870f68",
   password: "1",
   skinsId: "3",
   fixed: true
@@ -173,6 +172,14 @@ const mock = {
 
   "Get /api/getUser": (req, res) => {
     console.log("getUser:---" + req.query);
+    res.status(200).json({
+      errCode: "0",
+      data: user
+    });
+  },
+
+  "Post /api/postUserLogin": (req, res) => {
+    console.log("postUserLogin:---" + JSON.stringify(req.query));
     res.status(200).json({
       errCode: "0",
       data: user
