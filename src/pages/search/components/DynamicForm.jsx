@@ -16,25 +16,29 @@ const getOptions = data => {
 };
 let uuid = 1;
 
-const item = (icon, click, k) => (
+const item = (icon, click, k, getFieldDecorator) => (
   <Row gutter={8} key={k}>
     <Col span={4}>
-      <Select name={`req-${k}-1`} defaultValue="AND">
-        {getOptions(["AND", "OR", "NOT"])}
-      </Select>
+      {getFieldDecorator("logic", { initialValue: "AND" })(
+        <Select name={`req-${k}-1`}>{getOptions(["AND", "OR", "NOT"])}</Select>
+      )}
     </Col>
     <Col span={4}>
-      <Select name={`req-${k}-2`} defaultValue="标题">
-        {getOptions(["标题", "标签", "全文"])}
-      </Select>
+      {getFieldDecorator("searchFrom", { initialValue: "标题" })(
+        <Select name={`req-${k}-2`}>
+          {getOptions(["标题", "标签", "全文"])}
+        </Select>
+      )}
     </Col>
     <Col span={4}>
-      <Select name={`req-${k}-3`} defaultValue="词组">
-        {getOptions(["词组", "非词组"])}
-      </Select>
+      {getFieldDecorator("phrase", { initialValue: "词组" })(
+        <Select name={`req-${k}-3`}>{getOptions(["词组", "非词组"])}</Select>
+      )}
     </Col>
     <Col span={11}>
-      <Input name={`req-${k}-4`} placeholder="请输入..." />
+      {getFieldDecorator("keyword")(
+        <Input name={`req-${k}-4`} placeholder="请输入..." />
+      )}
     </Col>
     <Col span={1}>
       <Icon
@@ -58,7 +62,8 @@ class DynamicForm extends React.Component {
 
   add = () => {
     const { children } = this.state;
-    children.push(item("minus-circle-o", this.remove, uuid));
+    const { getFieldDecorator } = this.props;
+    children.push(item("minus-circle-o", this.remove, uuid, getFieldDecorator));
     uuid += 1;
     this.setState({
       children
@@ -73,12 +78,15 @@ class DynamicForm extends React.Component {
     });
   };
 
-  render = () => (
-    <FormItem {...this.props.formItemLayout} label="检索条件">
-      {item("plus-circle-o", this.add, 0)}
-      <Row>{this.state.children}</Row>
-    </FormItem>
-  );
+  render() {
+    const { getFieldDecorator } = this.props;
+    return (
+      <FormItem {...this.props.formItemLayout} label="检索条件">
+        {item("plus-circle-o", this.add, 0, getFieldDecorator)}
+        <Row>{this.state.children}</Row>
+      </FormItem>
+    );
+  }
 }
 
 export default DynamicForm;

@@ -46,8 +46,6 @@ class SearchForm extends React.Component {
     this.props.form.validateFields((err, values) => {
       console.log("Received values of form: ", values);
     });
-    console.log(e);
-    console.log(this.props.form);
     const { dispatch } = this.props;
     dispatch({ type: "search/getData", requestment: "nothing." });
   };
@@ -57,25 +55,28 @@ class SearchForm extends React.Component {
   };
 
   render() {
+    const { getFieldDecorator } = this.props.form;
     return (
       <div className={Styles.root}>
         <Form onSubmit={this.handleSearch}>
           <Row gutter={24}>
-            {" "}
             <Col span={24}>
               <FormItem {...formItemLayout} label="文档类型">
-                <Select
-                  name="articleType"
-                  style={{ width: "96%" }}
-                  defaultValue="全部"
-                >
-                  {getOptions(options)}
-                </Select>
+                {getFieldDecorator("articleType", { initialValue: "0" })(
+                  <Select style={{ width: "96%" }}>
+                    {getOptions(options)}
+                  </Select>
+                )}
               </FormItem>
               <FormItem {...formItemLayout} label="文档时间">
-                <RangePicker name="timeRange" />
+                {getFieldDecorator("timeRange")(
+                  <RangePicker name="timeRange" />
+                )}
               </FormItem>
-              <DynamicForm formItemLayout={formItemLayout} />
+              <DynamicForm
+                formItemLayout={formItemLayout}
+                getFieldDecorator={getFieldDecorator}
+              />
             </Col>
           </Row>
           <Row>
