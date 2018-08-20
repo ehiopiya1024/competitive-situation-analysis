@@ -15,13 +15,11 @@ const map = new Map([
 
 class ArticlePage extends React.Component {
   loadingNewArticle = () => {
-    const { scrollHeight } = document.documentElement;
-    const { scrollTop } = document.documentElement;
-    const { clientHeight } = document.body;
-    const { dispatch } = this.props;
+    const { scrollHeight, scrollTop, clientHeight } = document.documentElement;
     if (scrollHeight === clientHeight + scrollTop) {
-      dispatch({ type: "article/pullArticle", page: "0" });
-      console.log("loading...");
+      const { dispatch, articleData } = this.props;
+      const { page } = articleData;
+      dispatch({ type: "article/pullArticle", page });
     }
   };
 
@@ -36,7 +34,7 @@ class ArticlePage extends React.Component {
   }
 
   render() {
-    const { articleData, type } = this.props;
+    const { articleData } = this.props;
     const { loading, data, showNumber, total, loadingPull } = articleData;
     return loading ? (
       <div className={Styles.spin_container}>

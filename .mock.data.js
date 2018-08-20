@@ -171,6 +171,16 @@ const mock = {
     }, 500);
   },
 
+  "Get /api/searchPullData": (req, res) => {
+    console.log(req.query);
+    setTimeout(() => {
+      res.status(200).json({
+        errCode: "0",
+        data: articles
+      });
+    }, 500);
+  },
+
   "Get /api/getUserInfo": (req, res) => {
     console.log("getUserInfo:---" + req.query);
     res.status(200).json({

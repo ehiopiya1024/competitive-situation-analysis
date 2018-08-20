@@ -1,10 +1,12 @@
 import apis from "./searchApi";
 
-const { getData } = apis;
+const { getData, pullData } = apis;
 
 const init = {
   loading: false,
-  data: []
+  data: [],
+  loadingPull: false,
+  page: 0
 };
 
 export default {
@@ -14,23 +16,38 @@ export default {
   },
   effects: {
     *getData({ requirements }, { call, put }) {
-      yield put({ type: "changeLoad", loading: true });
+      yield put({ type: "changeState", loading: true });
       const { data } = yield call(getData, { requirements });
+      yield put({ type: "changeState", loading: false, data });
+    },
+    *pullData({ page }, { call, put }) {
+      yield put({ type: "changePullState", loadingPull: true });
+      const { data } = yield call(pullData, { page });
+      yield put({ type: "changePullState", loadingPull: false });
       yield put({ type: "changeData", data });
-      yield put({ type: "changeLoad", loading: false });
     }
   },
   reducers: {
-    changeLoad: (state, { loading }) => ({
+    changeState: (state, { loading, data }) => ({
       ...state,
-      loading
-    }),
-    changeData: (state, { data }) => ({
-      ...state,
+      loading,
       data
+    }),
+    changePullState: (state, { loadingPull }) => ({
+      ...state,
+      loadingPull
     }),
     clear: () => ({
       ...init
-    })
+    }),
+    changeData: (state, { data }) => {
+      const page = state.page + 1;
+      const result = state.data.concat(data);
+      return {
+        ...state,
+        page,
+        data: result
+      };
+    }
   }
 };

@@ -11,7 +11,7 @@ export default {
     showNumber: "0",
     total: "0",
     loadingPull: false,
-    page: "0"
+    page: 0
   },
   effects: {
     *getArticle({ payload }, { call, put }) {
@@ -64,10 +64,12 @@ export default {
     changePullState: (state, { loadingPull, data }) => {
       if (data) {
         const pre = state.data.concat(data);
+        const page = state.page + 1;
         return {
           ...state,
           loadingPull,
-          data: pre
+          data: pre,
+          page
         };
       }
       return {
