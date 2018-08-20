@@ -4,4 +4,6 @@ const getData = payload => get("/getArticle", payload);
 
 const like = articleId => get("/like", articleId);
 
-export default { getData, like };
+const pullArticle = page => get("/pullArticle", page);
+
+export default { getData, like, pullArticle };

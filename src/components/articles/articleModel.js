@@ -1,6 +1,6 @@
 import apis from "./articleApi";
 
-const { getData, like } = apis;
+const { getData, like, pullArticle } = apis;
 
 export default {
   namespace: "article",
@@ -9,7 +9,9 @@ export default {
     data: [],
     likeResult: "0",
     showNumber: "0",
-    total: "0"
+    total: "0",
+    loadingPull: false,
+    page: 0
   },
   effects: {
     *getArticle({ payload }, { call, put }) {
@@ -25,6 +27,16 @@ export default {
         message,
         success: data,
         option: liked
+      });
+    },
+    *pullArticle({ page }, { call, put }) {
+      yield put({ type: "changePullState", loadingPull: true });
+      const result = yield call(pullArticle, { page });
+      const { data } = result;
+      yield put({
+        type: "changePullState",
+        loadingPull: false,
+        data
       });
     }
   },
@@ -48,6 +60,22 @@ export default {
         message.error(`${str}失败！`);
       }
       return { ...state };
+    },
+    changePullState: (state, { loadingPull, data }) => {
+      if (data) {
+        const pre = state.data.concat(data);
+        const page = state.page + 1;
+        return {
+          ...state,
+          loadingPull,
+          data: pre,
+          page
+        };
+      }
+      return {
+        ...state,
+        loadingPull
+      };
     }
   }
 };
