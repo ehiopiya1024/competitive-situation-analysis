@@ -1,5 +1,6 @@
 import React from "react";
 import { Form, Row, Col, Button, Select, DatePicker } from "antd";
+import moment from "moment";
 import DynamicForm from "./DynamicForm";
 import Styles from "./SearchForm.less";
 
@@ -40,21 +41,59 @@ class SearchForm extends React.Component {
    *
    * other用于保存动态数组的内容
    */
-  other = {};
+  Other = new Map();
+
+  /**
+   * @Author: TH
+   * @Date: 2018-08-21 22:15:56
+   *
+   * data用于保存搜索条件
+   */
+  data = {};
 
   changeOther = newOther => {
-    this.other = newOther;
-    console.log(this.other);
+    this.Other = newOther;
   };
 
   handleSearch = e => {
     e.preventDefault();
+    let data;
     this.props.form.validateFields((err, values) => {
-      console.log("Received values of form: ", values);
+      data = { ...values };
+      const map = this.Other;
+      const array = [];
+      map.forEach(value => {
+        const val = value;
+        if (val[4]) {
+          for (let i = 1; i < 4; i += 1) {
+            if (!val[i]) val[i] = "0";
+          }
+          array.push(val);
+        }
+      });
+      data.other = array;
     });
+    data.page = 0;
+    this.data = data;
+    window.addEventListener("scroll", this.getData);
     const { dispatch } = this.props;
-    dispatch({ type: "search/getData", requestment: "nothing." });
+    dispatch({ type: "search/getData", payload: data });
   };
+
+  getData = () => {
+    const { scrollHeight, scrollTop, clientHeight } = document.documentElement;
+    if (scrollHeight === clientHeight + scrollTop) {
+      const { dispatch } = this.props;
+      this.data.page += 1;
+      dispatch({ type: "search/getData", payload: this.data });
+    }
+  };
+
+  componentWillUnmount() {
+    const { dispatch } = this.props;
+    dispatch({ type: "search/clear" });
+    window.removeEventListener("scroll", this.pullData);
+  }
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -71,9 +110,9 @@ class SearchForm extends React.Component {
                 )}
               </FormItem>
               <FormItem {...formItemLayout} label="文档时间">
-                {getFieldDecorator("timeRange")(
-                  <RangePicker name="timeRange" />
-                )}
+                {getFieldDecorator("timeRange", {
+                  initialValue: [moment(), moment()]
+                })(<RangePicker name="timeRange" />)}
               </FormItem>
               <DynamicForm
                 formItemLayout={formItemLayout}

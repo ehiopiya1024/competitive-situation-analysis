@@ -285,11 +285,20 @@ const mock = {
     }, 400);
   },
 
+  /**
+   * @Author: TH
+   * @Date: 2018-08-21 22:36:30
+   *
+   * 条件检索
+   */
   "Get /api/search": (req, res) => {
     console.log(req.query);
     setTimeout(() => {
       res.status(200).json({
         errCode: "0",
+        errorCode: 0,
+        showNumber: 0,
+        total: 200,
         data: articles
       });
     }, 500);
