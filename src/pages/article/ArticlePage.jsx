@@ -8,7 +8,11 @@ import CenterSpin from "../../components/centerSpin/CenterSpin";
 class ArticlePage extends React.Component {
   componentDidMount() {
     const { dispatch, match } = this.props;
-    dispatch({ type: "articleContent/getData", title: match.params.title });
+    dispatch({
+      type: "articleContent/getData",
+      title: match.params.title,
+      id: match.params.id
+    });
   }
 
   render() {

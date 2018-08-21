@@ -1,5 +1,5 @@
 import { get } from "../../utils/request";
 
-const getContent = title => get("/articleCotent", title);
+const getContent = id => get("/articleCotent", id);
 
 export default { getContent };

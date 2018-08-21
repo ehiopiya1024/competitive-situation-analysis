@@ -14,27 +14,29 @@ export default {
     ...init
   },
   effects: {
-    *getData({ title }, { call, put }) {
-      yield put({ type: "changeTitle", title });
+    *getData({ title, id }, { call, put }) {
+      yield put({ type: "changeState", title, loading: true });
       yield put({ type: "changeLoad", loading: true });
-      const { data } = yield call(getContent, { title });
-      yield put({ type: "changeContent", content: data.content });
-      yield put({ type: "changeLoad", loading: false });
+      const result = yield call(getContent, { id });
+      yield put({ type: "handleResult", result });
+      yield put({ type: "changeState", title, loading: false });
     }
   },
   reducers: {
-    changeTitle: (state, { title }) => ({
+    changeState: (state, { title, loading }) => ({
       ...state,
-      title
-    }),
-    changeLoad: (state, { loading }) => ({
-      ...state,
+      title,
       loading
     }),
-    changeContent: (state, { content }) => ({
-      ...state,
-      content
-    }),
+    handleResult: (state, { result }) => {
+      const { errorCode } = result;
+      const content =
+        errorCode === 0 ? result.content : "未知错误，拉取内容失败";
+      return {
+        ...state,
+        content
+      };
+    },
     clear: () => ({
       ...init
     })

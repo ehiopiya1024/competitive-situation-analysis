@@ -38,7 +38,7 @@ function RouterConfig({ history }) {
 
           <Route path="/tags/:tagName" component={TagSearchPage} />
           <Route
-            path="/article/:title"
+            path="/article/:title/:id"
             component={ArticlePage}
             history={history}
           />
