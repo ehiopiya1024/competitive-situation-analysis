@@ -34,6 +34,7 @@ class TagSearchPage extends React.Component {
     const { dispatch } = this.props;
     dispatch({ type: "clear" });
     window.removeEventListener("scroll", this.handlePullData);
+    window.scrollTo(0, 0, true);
   }
 
   handleChangeCurrentTag = (tagName, goUp) => {

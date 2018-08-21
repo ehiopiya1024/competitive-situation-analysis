@@ -26,6 +26,7 @@ class ArticlePage extends React.Component {
     const { dispatch } = this.props;
     dispatch({ type: "article/clear" });
     window.removeEventListener("scroll", this.loadingNewArticle);
+    window.scrollTo(0, 0, true);
   }
 
   render() {
