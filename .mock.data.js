@@ -325,9 +325,11 @@ const mock = {
   "Get /api/getUserInfo": (req, res) => {
     console.log("getUserInfo:---" + JSON.stringify(req.query));
     let user = {};
+    let collect = [];
     switch (req.query.userId) {
       case "1":
         user = user1;
+        collect = collectData;
         console.log("user1");
         break;
       case "2":
@@ -336,6 +338,7 @@ const mock = {
         break;
       case "3":
         user = user3;
+        collect = collectData;
         console.log("user3");
         break;
       case "4":
@@ -344,6 +347,7 @@ const mock = {
         break;
       case "5":
         user = user5;
+        collect = collectData;
         console.log("user5");
         break;
       case "6":
@@ -352,6 +356,7 @@ const mock = {
         break;
       case "7":
         user = user7;
+        collect = collectData;
         console.log("user7");
         break;
       case "8":
@@ -360,6 +365,7 @@ const mock = {
         break;
       case "9":
         user = user9;
+        collect = collectData;
         console.log("user9");
         break;
       case "10":
@@ -368,6 +374,7 @@ const mock = {
         break;
       case "11":
         user = user11;
+        collect = collectData;
         console.log("user11");
         break;
       case "12":
@@ -377,7 +384,7 @@ const mock = {
     }
     res.status(200).json({
       errCode: "0",
-      data: collectData,
+      data: collect,
       userObj: user
     });
   },
