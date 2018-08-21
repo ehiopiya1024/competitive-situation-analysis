@@ -170,7 +170,6 @@ class BaseLayout extends Component {
               {/* 左侧菜单 */}
               <div
                 style={{
-                  width: "200px",
                   backgroundColor: skin.leftColor
                 }}
               >
