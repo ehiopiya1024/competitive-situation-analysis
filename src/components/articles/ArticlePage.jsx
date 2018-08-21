@@ -1,46 +1,37 @@
 import React from "react";
-import { Spin } from "antd";
 import { connect } from "dva";
 import Article from "./components/Article";
 import Styles from "./ArticlePage.less";
 import CenterSpin from "../centerSpin/CenterSpin";
 
-const map = new Map([
-  ["home", "今日推荐"],
-  ["art", "艺术"],
-  ["collection", "收藏"],
-  ["literature", "文学"],
-  ["thought", "思想"]
-]);
-
+let page = -1;
 class ArticlePage extends React.Component {
   loadingNewArticle = () => {
     const { scrollHeight, scrollTop, clientHeight } = document.documentElement;
     if (scrollHeight === clientHeight + scrollTop) {
-      const { dispatch, articleData } = this.props;
-      const { page } = articleData;
-      dispatch({ type: "article/pullArticle", page });
+      const { dispatch, type } = this.props;
+      page += 1;
+      dispatch({ type: "article/getArticle", pageType: type, page });
     }
   };
 
   componentDidMount() {
     const { dispatch, type } = this.props;
-    dispatch({ type: "article/getArticle", payload: type });
+    page += 1;
+    dispatch({ type: "article/getArticle", pageType: type, page });
     window.addEventListener("scroll", this.loadingNewArticle);
   }
 
   componentWillUnmount() {
+    const { dispatch } = this.props;
+    dispatch({ type: "article/clear" });
     window.removeEventListener("scroll", this.loadingNewArticle);
   }
 
   render() {
     const { articleData } = this.props;
-    const { loading, data, showNumber, total, loadingPull } = articleData;
-    return loading ? (
-      <div className={Styles.spin_container}>
-        <Spin size="large" />
-      </div>
-    ) : (
+    const { data, showNumber, total, loading } = articleData;
+    return (
       <div className={Styles.content}>
         <div className={Styles.counterbox}>
           <div className={Styles.counterbox}>
@@ -58,7 +49,7 @@ class ArticlePage extends React.Component {
         {data.map((v, k) => (
           <Article data={v} key={k} dispatch={this.props.dispatch} />
         ))}
-        {loadingPull ? <CenterSpin padding={true} /> : null}
+        {loading ? <CenterSpin padding={true} /> : null}
       </div>
     );
   }

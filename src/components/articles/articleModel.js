@@ -1,24 +1,25 @@
 import apis from "./articleApi";
 
-const { getData, like, pullArticle } = apis;
+const { getData, like } = apis;
+
+const init = {
+  loading: false,
+  data: [],
+  likeResult: "0",
+  showNumber: "0",
+  total: "0"
+};
 
 export default {
   namespace: "article",
   state: {
-    loading: false,
-    data: [],
-    likeResult: "0",
-    showNumber: "0",
-    total: "0",
-    loadingPull: false,
-    page: 0
+    ...init
   },
   effects: {
-    *getArticle({ payload }, { call, put }) {
-      yield put({ type: "changeState", payload: true });
-      const result = yield call(getData, { payload });
-      const { data } = result;
-      yield put({ type: "changeState", payload: false, data });
+    *getArticle({ pageType, page }, { call, put }) {
+      yield put({ type: "changeState" });
+      const result = yield call(getData, { type: pageType, page });
+      yield put({ type: "handleResult", result });
     },
     *like({ articleId, message, liked }, { call, put }) {
       const { data } = yield call(like, { articleId, liked });
@@ -28,32 +29,32 @@ export default {
         success: data,
         option: liked
       });
-    },
-    *pullArticle({ page }, { call, put }) {
-      yield put({ type: "changePullState", loadingPull: true });
-      const result = yield call(pullArticle, { page });
-      const { data } = result;
-      yield put({
-        type: "changePullState",
-        loadingPull: false,
-        data
-      });
     }
   },
   reducers: {
-    changeState: (state, { payload, data }) => ({
+    changeState: state => ({
       ...state,
-      loading: payload,
-      data
+      loading: true
     }),
-    likeCallBack: (state, { message, success, option }) => {
-      let str;
-      if (option) {
-        str = "取消收藏";
-      } else {
-        str = "收藏";
+    handleResult: (state, { result }) => {
+      const { errorCode } = result;
+      if (errorCode === 0) {
+        const { showNumber, total, data } = result;
+        return {
+          ...state,
+          showNumber,
+          total,
+          data: state.data.concat(data),
+          loading: false
+        };
       }
-
+      return {
+        ...state,
+        loading: false
+      };
+    },
+    likeCallBack: (state, { message, success, option }) => {
+      const str = option ? "取消收藏" : "收藏";
       if (success) {
         message.success(`${str}成功`);
       } else {
@@ -61,21 +62,9 @@ export default {
       }
       return { ...state };
     },
-    changePullState: (state, { loadingPull, data }) => {
-      if (data) {
-        const pre = state.data.concat(data);
-        const page = state.page + 1;
-        return {
-          ...state,
-          loadingPull,
-          data: pre,
-          page
-        };
-      }
-      return {
-        ...state,
-        loadingPull
-      };
-    }
+    clear: state => ({
+      ...state,
+      ...init
+    })
   }
 };

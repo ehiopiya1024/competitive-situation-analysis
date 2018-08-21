@@ -122,11 +122,23 @@ const mock = {
     }, 2000);
   },
 
+  /**
+   * @Author: TH
+   * @Date: 2018-08-21 09:54:05
+   *
+   * 获取文章
+   *
+   * 如果不写errCode就会报未知错误
+   *
+   */
   "Get /api/getArticle": (req, res) => {
     console.log(req.query);
     setTimeout(() => {
       res.status(200).json({
         errCode: "0",
+        errorCode: 0,
+        showNumber: 15,
+        total: 1000,
         data: articles
       });
     }, 300);
@@ -169,16 +181,6 @@ const mock = {
       res.status(200).json({
         errCode: "0",
         data: content
-      });
-    }, 500);
-  },
-
-  "Get /api/pullArticle": (req, res) => {
-    console.log(req.query);
-    setTimeout(() => {
-      res.status(200).json({
-        errCode: "0",
-        data: articles
       });
     }, 500);
   },
