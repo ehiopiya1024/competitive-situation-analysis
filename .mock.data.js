@@ -190,7 +190,7 @@ const mock = {
       res.status(200).json({
         errCode: "0",
         errorCode: 0,
-        data: content
+        content
       });
     }, 500);
   },
