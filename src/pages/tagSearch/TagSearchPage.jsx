@@ -5,14 +5,35 @@ import Article from "../../components/articles/components/Article";
 import TagBox from "./components/TagBox";
 import CenterSpin from "../../components/centerSpin/CenterSpin";
 
+let page = -1;
 class TagSearchPage extends React.Component {
+  handlePullData = () => {
+    const { scrollHeight, scrollTop, clientHeight } = document.documentElement;
+    if (scrollHeight === clientHeight + scrollTop) {
+      const { dispatch, tagSearch } = this.props;
+      page += 1;
+      dispatch({
+        type: "tagSearch/pullData",
+        tagNames: tagSearch.currentTag,
+        page
+      });
+    }
+  };
+
   componentDidMount() {
     if (!this.props.match) return;
+    window.addEventListener("scroll", this.handlePullData);
     const { dispatch } = this.props;
     dispatch({
       type: "tagSearch/getData",
       tagNames: [this.props.match.params.tagName]
     });
+  }
+
+  componentWillUnmount() {
+    const { dispatch } = this.props;
+    dispatch({ type: "clear" });
+    window.removeEventListener("scroll", this.handlePullData);
   }
 
   handleChangeCurrentTag = (tagName, goUp) => {
@@ -66,7 +87,8 @@ class TagSearchPage extends React.Component {
     return (
       <Row gutter={50}>
         <Col span={16} style={{ height: "100%" }}>
-          {loading ? <CenterSpin padding={true} /> : article}
+          {article}
+          {loading ? <CenterSpin padding={true} /> : null}
         </Col>
         <Col span={7}>
           <TagBox
@@ -75,7 +97,7 @@ class TagSearchPage extends React.Component {
             handleChange={this.handleChangeCurrentTag}
             up={false}
           />
-          {loading ? null : associatedTag}
+          {associatedTag}
         </Col>
       </Row>
     );

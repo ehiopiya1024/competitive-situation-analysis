@@ -157,11 +157,18 @@ const mock = {
     }, 200);
   },
 
+  /**
+   * @Author: TH
+   * @Date: 2018-08-21 14:02:18
+   *
+   * 标签搜索
+   */
   "Get /api/getTagData": (req, res) => {
     console.log(req.query);
     setTimeout(() => {
       res.status(200).json({
         errCode: "0",
+        errorCode: 0,
         data: articles,
         associatedTags
       });
