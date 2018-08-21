@@ -16,29 +16,25 @@ const getOptions = data => {
 };
 let uuid = 1;
 
-const item = (icon, click, k, getFieldDecorator) => (
+const item = (icon, click, k, handleChange) => (
   <Row gutter={8} key={k}>
     <Col span={4}>
-      {getFieldDecorator("logic", { initialValue: "AND" })(
-        <Select name={`req-${k}-1`}>{getOptions(["AND", "OR", "NOT"])}</Select>
-      )}
+      <Select defaultValue="0" onChange={handleChange.bind(this, k, 1)}>
+        {getOptions(["AND", "OR", "NOT"])}
+      </Select>
     </Col>
     <Col span={4}>
-      {getFieldDecorator("searchFrom", { initialValue: "标题" })(
-        <Select name={`req-${k}-2`}>
-          {getOptions(["标题", "标签", "全文"])}
-        </Select>
-      )}
+      <Select defaultValue="0" onChange={handleChange.bind(this, k, 2)}>
+        {getOptions(["标题", "标签", "全文"])}
+      </Select>
     </Col>
     <Col span={4}>
-      {getFieldDecorator("phrase", { initialValue: "词组" })(
-        <Select name={`req-${k}-3`}>{getOptions(["词组", "非词组"])}</Select>
-      )}
+      <Select defaultValue="0" onChange={handleChange.bind(this, k, 3)}>
+        {getOptions(["词组", "非词组"])}
+      </Select>
     </Col>
     <Col span={11}>
-      {getFieldDecorator("keyword")(
-        <Input name={`req-${k}-4`} placeholder="请输入..." />
-      )}
+      <Input onChange={handleChange.bind(this, k, 4)} placeholder="请输入..." />
     </Col>
     <Col span={1}>
       <Icon
@@ -60,10 +56,18 @@ class DynamicForm extends React.Component {
     children: []
   };
 
+  handleChange = (line, number, option) => {
+    if (number === 4) {
+      const content = option.target.value;
+      console.log(option.target.value);
+    } else {
+      console.log(line, number, option);
+    }
+  };
+
   add = () => {
     const { children } = this.state;
-    const { getFieldDecorator } = this.props;
-    children.push(item("minus-circle-o", this.remove, uuid, getFieldDecorator));
+    children.push(item("minus-circle-o", this.remove, uuid));
     uuid += 1;
     this.setState({
       children
@@ -79,10 +83,10 @@ class DynamicForm extends React.Component {
   };
 
   render() {
-    const { getFieldDecorator } = this.props;
+    const { changeOther } = this.props;
     return (
       <FormItem {...this.props.formItemLayout} label="检索条件">
-        {item("plus-circle-o", this.add, 0, getFieldDecorator)}
+        {item("plus-circle-o", this.add, 0, this.handleChange)}
         <Row>{this.state.children}</Row>
       </FormItem>
     );
