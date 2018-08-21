@@ -34,12 +34,18 @@ const getOptions = data => {
 };
 
 class SearchForm extends React.Component {
-  /* handleSearch = e => {
-    e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      console.log("Received values of form: ", values);
-    });
-  };  */
+  /**
+   * @Author: TH
+   * @Date: 2018-08-21 15:26:18
+   *
+   * other用于保存动态数组的内容
+   */
+  other = [];
+
+  changeOther = newOther => {
+    this.other = newOther;
+    console.log(this.other);
+  };
 
   handleSearch = e => {
     e.preventDefault();
@@ -48,10 +54,6 @@ class SearchForm extends React.Component {
     });
     const { dispatch } = this.props;
     dispatch({ type: "search/getData", requestment: "nothing." });
-  };
-
-  handleReset = () => {
-    this.props.form.resetFields();
   };
 
   render() {
@@ -75,7 +77,7 @@ class SearchForm extends React.Component {
               </FormItem>
               <DynamicForm
                 formItemLayout={formItemLayout}
-                getFieldDecorator={getFieldDecorator}
+                changeOther={this.changeOther}
               />
             </Col>
           </Row>
