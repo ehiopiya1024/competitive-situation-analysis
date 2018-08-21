@@ -62,8 +62,7 @@ export default {
       }
       return { ...state };
     },
-    clear: state => ({
-      ...state,
+    clear: () => ({
       ...init
     })
   }

@@ -15,6 +15,11 @@ class ArticlePage extends React.Component {
     });
   }
 
+  componentWillUnmount() {
+    const { dispatch } = this.props;
+    dispatch({ type: "articleContent/clear" });
+  }
+
   render() {
     const { articleContent } = this.props;
     const { title, content, loading } = articleContent;
