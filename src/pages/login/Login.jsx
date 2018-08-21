@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "dva";
-import { Link } from "react-router-dom";
 import { Form, Input, Button, Icon, message } from "antd";
 import styles from "./Login.less";
 

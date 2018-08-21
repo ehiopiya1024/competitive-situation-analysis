@@ -22,6 +22,7 @@ function RouterConfig({ history }) {
     <Router history={history}>
       <Switch>
         <Route path="/login" component={Login} exact />
+        <Route path="/b/:userId" component={BaseLayout} exact />
         <BaseLayout location={history.location}>
           <Route path="/" render={() => <Redirect to="/home" />} exact />
           <Route path="/home" component={HomePage} exact />

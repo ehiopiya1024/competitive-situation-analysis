@@ -1,7 +1,7 @@
-import { post } from "../../utils/request";
+import { get } from "../../utils/request";
 
-const postUserLogin = user => post("/postUserLogin", user);
+const userLogin = user => get("/userLogin", user);
 
 export default {
-  postUserLogin
+  userLogin
 };

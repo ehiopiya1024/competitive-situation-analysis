@@ -75,27 +75,137 @@ const collectData = [
   }
 ];
 
-const user = {
+const user1 = {
   userId: "1",
   email: "1@1.cn",
-  username: "Alexander Pierce",
+  username: "1-Alexander Pierce",
   headImg:
     "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534556865&di=4e32109595745e1b26b8306a745dc505&imgtype=jpg&er=1&src=http%3A%2F%2Ftx.haiqq.com%2Fuploads%2Fallimg%2F150401%2F1954212091-9.jpg",
   apartment: "开发部",
   password: "1",
-  skinsId: "3",
+  skinsId: "1",
   fixed: true
 };
 
 const user2 = {
   userId: "2",
-  email: "2@2.cn",
-  username: "2Alexander Pierce",
+  email: "2@22.cn",
+  username: "2-Alexander Pierce",
   headImg:
     "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534556865&di=4e32109595745e1b26b8306a745dc505&imgtype=jpg&er=1&src=http%3A%2F%2Ftx.haiqq.com%2Fuploads%2Fallimg%2F150401%2F1954212091-9.jpg",
   apartment: "市场部",
   password: "2",
+  skinsId: "1",
+  fixed: false
+};
+const user3 = {
+  userId: "3",
+  email: "3@22.cn",
+  username: "3-Alexander Pierce",
+  headImg:
+    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534556865&di=4e32109595745e1b26b8306a745dc505&imgtype=jpg&er=1&src=http%3A%2F%2Ftx.haiqq.com%2Fuploads%2Fallimg%2F150401%2F1954212091-9.jpg",
+  apartment: "市场部",
+  password: "3",
   skinsId: "2",
+  fixed: true
+};
+const user4 = {
+  userId: "4",
+  email: "4@22.cn",
+  username: "4-Alexander Pierce",
+  headImg:
+    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534556865&di=4e32109595745e1b26b8306a745dc505&imgtype=jpg&er=1&src=http%3A%2F%2Ftx.haiqq.com%2Fuploads%2Fallimg%2F150401%2F1954212091-9.jpg",
+  apartment: "市场部",
+  password: "4",
+  skinsId: "2",
+  fixed: false
+};
+const user5 = {
+  userId: "5",
+  email: "5@22.cn",
+  username: "5-Alexander Pierce",
+  headImg:
+    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534556865&di=4e32109595745e1b26b8306a745dc505&imgtype=jpg&er=1&src=http%3A%2F%2Ftx.haiqq.com%2Fuploads%2Fallimg%2F150401%2F1954212091-9.jpg",
+  apartment: "市场部",
+  password: "5",
+  skinsId: "3",
+  fixed: true
+};
+const user6 = {
+  userId: "6",
+  email: "6@22.cn",
+  username: "6-Alexander Pierce",
+  headImg:
+    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534556865&di=4e32109595745e1b26b8306a745dc505&imgtype=jpg&er=1&src=http%3A%2F%2Ftx.haiqq.com%2Fuploads%2Fallimg%2F150401%2F1954212091-9.jpg",
+  apartment: "市场部",
+  password: "2",
+  skinsId: "3",
+  fixed: false
+};
+const user7 = {
+  userId: "7",
+  email: "7@22.cn",
+  username: "7-Alexander Pierce",
+  headImg:
+    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534556865&di=4e32109595745e1b26b8306a745dc505&imgtype=jpg&er=1&src=http%3A%2F%2Ftx.haiqq.com%2Fuploads%2Fallimg%2F150401%2F1954212091-9.jpg",
+  apartment: "市场部",
+  password: "2",
+  skinsId: "4",
+  fixed: true
+};
+const user8 = {
+  userId: "8",
+  email: "8@22.cn",
+  username: "8-Alexander Pierce",
+  headImg:
+    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534556865&di=4e32109595745e1b26b8306a745dc505&imgtype=jpg&er=1&src=http%3A%2F%2Ftx.haiqq.com%2Fuploads%2Fallimg%2F150401%2F1954212091-9.jpg",
+  apartment: "市场部",
+  password: "2",
+  skinsId: "4",
+  fixed: false
+};
+const user9 = {
+  userId: "9",
+  email: "9@22.cn",
+  username: "9-Alexander Pierce",
+  headImg:
+    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534556865&di=4e32109595745e1b26b8306a745dc505&imgtype=jpg&er=1&src=http%3A%2F%2Ftx.haiqq.com%2Fuploads%2Fallimg%2F150401%2F1954212091-9.jpg",
+  apartment: "市场部",
+  password: "2",
+  skinsId: "5",
+  fixed: true
+};
+const user10 = {
+  userId: "10",
+  email: "10@22.cn",
+  username: "10-Alexander Pierce",
+  headImg:
+    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534556865&di=4e32109595745e1b26b8306a745dc505&imgtype=jpg&er=1&src=http%3A%2F%2Ftx.haiqq.com%2Fuploads%2Fallimg%2F150401%2F1954212091-9.jpg",
+  apartment: "市场部",
+  password: "2",
+  skinsId: "5",
+  fixed: false
+};
+const user11 = {
+  userId: "11",
+  email: "11@22.cn",
+  username: "11-Alexander Pierce",
+  headImg:
+    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534556865&di=4e32109595745e1b26b8306a745dc505&imgtype=jpg&er=1&src=http%3A%2F%2Ftx.haiqq.com%2Fuploads%2Fallimg%2F150401%2F1954212091-9.jpg",
+  apartment: "市场部",
+  password: "2",
+  skinsId: "6",
+  fixed: true
+};
+const user12 = {
+  userId: "12",
+  email: "12@22.cn",
+  username: "12-Alexander Pierce",
+  headImg:
+    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534556865&di=4e32109595745e1b26b8306a745dc505&imgtype=jpg&er=1&src=http%3A%2F%2Ftx.haiqq.com%2Fuploads%2Fallimg%2F150401%2F1954212091-9.jpg",
+  apartment: "市场部",
+  password: "2",
+  skinsId: "6",
   fixed: false
 };
 
@@ -213,7 +323,58 @@ const mock = {
   },
 
   "Get /api/getUserInfo": (req, res) => {
-    console.log("getUserInfo:---" + req.query);
+    console.log("getUserInfo:---" + JSON.stringify(req.query));
+    let user = {};
+    switch (req.query.userId) {
+      case "1":
+        user = user1;
+        console.log("user1");
+        break;
+      case "2":
+        user = user2;
+        console.log("user2");
+        break;
+      case "3":
+        user = user3;
+        console.log("user3");
+        break;
+      case "4":
+        user = user4;
+        console.log("user4");
+        break;
+      case "5":
+        user = user5;
+        console.log("user5");
+        break;
+      case "6":
+        user = user6;
+        console.log("user6");
+        break;
+      case "7":
+        user = user7;
+        console.log("user7");
+        break;
+      case "8":
+        user = user8;
+        console.log("user8");
+        break;
+      case "9":
+        user = user9;
+        console.log("user9");
+        break;
+      case "10":
+        user = user10;
+        console.log("user10");
+        break;
+      case "11":
+        user = user11;
+        console.log("user11");
+        break;
+      case "12":
+        user = user12;
+        console.log("user12");
+        break;
+    }
     res.status(200).json({
       errCode: "0",
       data: collectData,
@@ -221,36 +382,111 @@ const mock = {
     });
   },
 
-  "Get /api/getUser": (req, res) => {
-    console.log("getUser:---" + req.query);
+  "Get /api/userLogin": (req, res) => {
+    console.log("userLogin:---" + JSON.stringify(req.query));
+    res.status(200).json({
+      errCode: "0",
+      data: user1
+    });
+  },
+
+  "Get /api/modifyUser": (req, res) => {
+    console.log("modifyUser:---" + JSON.stringify(req.query));
+    let user = {};
+    switch (req.query.skinsId) {
+      case "1":
+        if (req.query.fixed === "true") {
+          user = user1;
+          console.log("user1");
+        } else {
+          user = user2;
+          console.log("user2");
+        }
+        break;
+      case "2":
+        if (req.query.fixed === "true") {
+          user = user3;
+          console.log("user3");
+        } else {
+          user = user4;
+          console.log("user4");
+        }
+        break;
+      case "3":
+        if (req.query.fixed === "true") {
+          user = user4;
+          console.log("user5");
+        } else {
+          user = user6;
+          console.log("user6");
+        }
+        break;
+      case "4":
+        if (req.query.fixed === "true") {
+          user = user7;
+          console.log("user7");
+        } else {
+          user = user8;
+          console.log("user8");
+        }
+        break;
+      case "5":
+        if (req.query.fixed === "true") {
+          user = user9;
+          console.log("user9");
+        } else {
+          user = user10;
+          console.log("user10");
+        }
+        break;
+      case "6":
+        if (req.query.fixed === "true") {
+          user = user11;
+          console.log("user11");
+        } else {
+          user = user12;
+          console.log("user12");
+        }
+        break;
+      default:
+        user = user1;
+        console.log("default");
+        break;
+      // case "7":
+      //   user = user7;
+      //   console.log("user7");
+      //   break;
+      // case "8":
+      //   user = user8;
+      //   console.log("user8");
+      //   break;
+      // case "9":
+      //   user = user9;
+      //   console.log("user9");
+      //   break;
+      // case "10":
+      //   user = user10;
+      //   console.log("user10");
+      //   break;
+      // case "11":
+      //   user = user11;
+      //   console.log("user11");
+      //   break;
+      // case "12":
+      //   user = user12;
+      //   console.log("user12");
+      //   break;
+    }
     res.status(200).json({
       errCode: "0",
       data: user
     });
-  },
 
-  "Post /api/postUserLogin": (req, res) => {
-    console.log("postUserLogin:---" + JSON.stringify(req.query));
-    res.status(200).json({
-      errCode: "0",
-      data: user
-    });
-  },
-
-  "Post /api/modifyUserInfo": (req, res) => {
-    console.log("modifyUserInfo:---" + JSON.stringify(req.query));
-    res.status(200).json({
-      errCode: "0",
-      data: user2
-    });
-  },
-
-  "Post /api/modifyUserPassword": (req, res) => {
-    console.log("modifyUserPassword:---" + JSON.stringify(req.query));
-    res.status(200).json({
-      errCode: "0",
-      data: user2
-    });
+    // console.log("modifyUser:---" + JSON.stringify(req.query));
+    // res.status(200).json({
+    //   errCode: "0",
+    //   data: user2
+    // });
   }
 };
 module.exports = mock;
