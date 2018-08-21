@@ -1,6 +1,6 @@
 import apis from "./LoginApi";
 
-const { postUserLogin } = apis;
+const { userLogin } = apis;
 
 export default {
   namespace: "login",
@@ -10,18 +10,15 @@ export default {
 
   effects: {
     *loginUser({ user }, { call, put }) {
-      console.log("*loginUser:");
-      console.log(user);
-      const { data } = yield call(postUserLogin, user);
+      const { data } = yield call(userLogin, user);
       yield put({ type: "changeState", data });
     }
   },
 
   reducers: {
-    changeState: (state, { data }) => {
-      console.log("data:");
-      console.log(data);
-      return { ...state, user: data };
-    }
+    changeState: (state, { data }) => ({
+      ...state,
+      user: data
+    })
   }
 };

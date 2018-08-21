@@ -36,7 +36,7 @@ class TopHeader extends React.Component {
         </div>
         <div className={styles.menuButton}>
           <Button size="small">
-            <Link to="/userpage/:userId">用户账户</Link>
+            <Link to={`/userpage/${user.userId}`}>用户账户</Link>
           </Button>
           <Button size="small">
             <Link to="/login">退出系统</Link>

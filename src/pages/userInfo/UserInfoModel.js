@@ -1,8 +1,9 @@
 import apis from "./UserPageApi";
+import { skins } from "../../utils/skins.json";
 
 const moment = require("moment");
 
-const { getUserInfo, modifyUserInfo, modifyUserPassword } = apis;
+const { getUserInfo, modifyUser } = apis;
 
 const collectDataSort = collectDataOld => {
   const compare = (a, b) =>
@@ -57,24 +58,43 @@ const getCollectDataNew = collectDataOld => {
   return result;
 };
 
+const defaultSkin = {
+  topColor: "rgba(255,255,255,0.9)",
+  leftColor: "rgba(255,255,255,0.9)"
+};
+
 export default {
   namespace: "userpage",
   state: {
     collectDataNew: [],
-    user: {}
+    user: {},
+    skin: defaultSkin
   },
-
+  // subscriptions: {
+  //   setup({ dispatch, history }) {
+  //     history.listen(location => {
+  //       if (location.pathname.includes("/userpage")) {
+  //         dispatch({
+  //           type: "getData",
+  //           user: { userId: location.pathname.split("/")[2] }
+  //         });
+  //       }
+  //     });
+  //   }
+  // },
   effects: {
     *getData({ user }, { call, put }) {
-      const { data, userObj } = yield call(getUserInfo, user.userId);
+      const { data, userObj } = yield call(getUserInfo, {
+        userId: user.userId
+      });
       yield put({ type: "changeState", data, userObj });
     },
     *modifyUserInfo({ user }, { call, put }) {
-      const { data } = yield call(modifyUserInfo, user);
+      const { data } = yield call(modifyUser, user);
       yield put({ type: "changeUserState", data });
     },
     *modifyUserPassword({ user }, { call, put }) {
-      const { data } = yield call(modifyUserPassword, user);
+      const { data } = yield call(modifyUser, user);
       yield put({ type: "changeUserState", data });
     }
   },
@@ -83,11 +103,13 @@ export default {
     changeState: (state, { data, userObj }) => ({
       ...state,
       collectDataNew: getCollectDataNew(data),
-      user: userObj
+      user: userObj,
+      skin: skins[parseInt(userObj.skinsId, 10) - 1]
     }),
     changeUserState: (state, { data }) => ({
       ...state,
-      user: data
+      user: data,
+      skin: skins[parseInt(data.skinsId, 10) - 1]
     })
   }
 };

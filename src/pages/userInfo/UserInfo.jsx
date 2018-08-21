@@ -10,12 +10,10 @@ let apartment = "";
 class UserInfo extends React.Component {
   getApartmentValue = value => {
     apartment = value;
-    console.log(apartment);
   };
 
   submitInfo = () => {
     const username = document.getElementById("username");
-    const headImg = document.getElementById("headImg");
     const mail = document.getElementById("mail");
     const mailReg = /^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
     if (mail.value !== "" && !mailReg.test(mail.value)) {
@@ -25,9 +23,9 @@ class UserInfo extends React.Component {
       dispatch({
         type: "userpage/modifyUserInfo",
         user: {
+          userId: this.props.match.params.userId,
           apartment,
           username: username.value,
-          headImg: headImg.value,
           mail: mail.value
         }
       });
@@ -35,10 +33,6 @@ class UserInfo extends React.Component {
         const { userpage } = this.props;
         const { user } = userpage;
         username.value = user.username;
-        /**
-         * 头像上传
-         */
-        // headImg.value = user.headImg;
         mail.value = user.email;
       }, 700);
       message.success("修改成功！", 1.5);
@@ -59,6 +53,7 @@ class UserInfo extends React.Component {
       dispatch({
         type: "userpage/modifyUserPassword",
         user: {
+          userId: this.props.match.params.userId,
           password: p1.value
         }
       });
@@ -123,14 +118,6 @@ class UserInfo extends React.Component {
                 name="username"
                 id="username"
                 defaultValue={user.username}
-              />
-              <InputItem
-                IconType="file"
-                placeholder="头像"
-                type="file"
-                name="headImg"
-                id="headImg"
-                defaultValue={user.headImg}
               />
               <InputItem
                 IconType="mail"
