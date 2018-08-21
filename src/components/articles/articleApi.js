@@ -2,6 +2,6 @@ import { get } from "../../utils/request";
 
 const getData = payload => get("/getArticle", payload);
 
-const like = articleId => get("/like", articleId);
+const like = data => get("/like", data);
 
 export default { getData, like };

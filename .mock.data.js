@@ -141,12 +141,18 @@ const mock = {
     }, 300);
   },
 
+  /**
+   * @Author: TH
+   * @Date: 2018-08-21 10:44:24
+   *
+   * 收藏文章
+   */
   "Get /api/like": (req, res) => {
     console.log(req.query);
     setTimeout(() => {
       res.status(200).json({
         errCode: "0",
-        data: true
+        errorCode: 0
       });
     }, 200);
   },

@@ -21,12 +21,17 @@ export default {
       const result = yield call(getData, { type: pageType, page });
       yield put({ type: "handleResult", result });
     },
-    *like({ articleId, message, liked }, { call, put }) {
-      const { data } = yield call(like, { articleId, liked });
+    *like({ articleId, message, liked, collectTime, userId }, { call, put }) {
+      const { errorCode } = yield call(like, {
+        articleId,
+        liked,
+        collectTime,
+        userId
+      });
       yield put({
         type: "likeCallBack",
         message,
-        success: data,
+        success: errorCode,
         option: liked
       });
     }
@@ -55,7 +60,7 @@ export default {
     },
     likeCallBack: (state, { message, success, option }) => {
       const str = option ? "取消收藏" : "收藏";
-      if (success) {
+      if (success === 0) {
         message.success(`${str}成功`);
       } else {
         message.error(`${str}失败！`);

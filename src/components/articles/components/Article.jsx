@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { Row, Col, Tag, Icon, message } from "antd";
 import styles from "./Article.less";
 
+const moment = require("moment");
+
 class Article extends React.Component {
   state = {
     star: false
@@ -15,8 +17,15 @@ class Article extends React.Component {
 
   handleLike = (id, liked) => {
     this.setState({ star: !liked });
-    const { dispatch } = this.props;
-    dispatch({ type: "article/like", articleId: id, message, liked });
+    const { dispatch, userpage } = this.props;
+    dispatch({
+      type: "article/like",
+      articleId: id,
+      message,
+      liked,
+      collectTime: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
+      userId: userpage.user.userId
+    });
   };
 
   render = () => {
@@ -66,4 +75,7 @@ class Article extends React.Component {
   };
 }
 
-export default connect(({ article }) => ({ articleData: article }))(Article);
+export default connect(({ article, userpage }) => ({
+  articleData: article,
+  userpage
+}))(Article);
