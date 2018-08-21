@@ -1,12 +1,12 @@
 import apis from "./searchApi";
 
-const { getData, pullData } = apis;
+const { getData } = apis;
 
 const init = {
   loading: false,
   data: [],
-  loadingPull: false,
-  page: 0
+  showNumber: 0,
+  total: undefined
 };
 
 export default {
@@ -15,39 +15,29 @@ export default {
     ...init
   },
   effects: {
-    *getData({ requirements }, { call, put }) {
+    *getData({ payload }, { call, put }) {
+      if (payload.page === 0) {
+        yield put({ type: "clear" });
+      }
       yield put({ type: "changeState", loading: true });
-      const { data } = yield call(getData, { requirements });
-      yield put({ type: "changeState", loading: false, data });
-    },
-    *pullData({ page }, { call, put }) {
-      yield put({ type: "changePullState", loadingPull: true });
-      const { data } = yield call(pullData, { page });
-      yield put({ type: "changePullState", loadingPull: false });
-      yield put({ type: "changeData", data });
+      const result = yield call(getData, payload);
+      yield put({ type: "changeData", result });
+      yield put({ type: "changeState", loading: false });
     }
   },
   reducers: {
-    changeState: (state, { loading, data }) => ({
+    changeState: (state, { loading }) => ({
       ...state,
-      loading,
-      data
+      loading
     }),
-    changePullState: (state, { loadingPull }) => ({
+    changeData: (state, { result }) => ({
       ...state,
-      loadingPull
+      data: state.data.concat(result.data),
+      showNumber: result.showNumber,
+      total: result.total
     }),
     clear: () => ({
       ...init
-    }),
-    changeData: (state, { data }) => {
-      const page = state.page + 1;
-      const result = state.data.concat(data);
-      return {
-        ...state,
-        page,
-        data: result
-      };
-    }
+    })
   }
 };
