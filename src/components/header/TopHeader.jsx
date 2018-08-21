@@ -27,16 +27,27 @@ class TopHeader extends React.Component {
       >
         {/* 头像展开 */}
         <div className={styles.menuInfo}>
-          <Link to="/user">
-            <img className={styles.avatar} src={user.headImg} />
-          </Link>
+          {user.userId === undefined ? (
+            <Link to={`/login`}>
+              <img className={styles.avatar} src={user.headImg} />
+            </Link>
+          ) : (
+            <Link to={`/userpage/${user.userId}`}>
+              <img className={styles.avatar} src={user.headImg} />
+            </Link>
+          )}
+
           <div className={styles.username}>{user.username}</div>
           <div className={styles.line} />
           <div className={styles.apartment}>{user.apartment}</div>
         </div>
         <div className={styles.menuButton}>
           <Button size="small">
-            <Link to={`/userpage/${user.userId}`}>用户账户</Link>
+            {user.userId === undefined ? (
+              <Link to={`/login`}>用户账户</Link>
+            ) : (
+              <Link to={`/userpage/${user.userId}`}>用户账户</Link>
+            )}
           </Button>
           <Button size="small">
             <Link to="/login">退出系统</Link>

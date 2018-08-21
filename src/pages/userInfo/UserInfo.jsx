@@ -166,7 +166,19 @@ class UserInfo extends React.Component {
             <strong>收藏文档</strong>
           </h2>
           <div>
-            <CollectItem collectDataNew={collectDataNew} />
+            {collectDataNew.length > 0 ? (
+              <div>
+                <CollectItem collectDataNew={collectDataNew} />
+              </div>
+            ) : (
+              <div>
+                <h3>还没有收藏文章，快去逛逛收藏吧</h3>
+                <img
+                  src="http://p1.music.126.net/WjQOOjQYXwWJO2D4skZ8jQ==/3383197282912613.jpg"
+                  alt=""
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>
