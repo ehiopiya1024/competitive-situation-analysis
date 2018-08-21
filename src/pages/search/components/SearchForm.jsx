@@ -92,7 +92,7 @@ class SearchForm extends React.Component {
   componentWillUnmount() {
     const { dispatch } = this.props;
     dispatch({ type: "search/clear" });
-    window.removeEventListener("scroll", this.pullData);
+    window.removeEventListener("scroll", this.getData);
     window.scrollTo(0, 0, true);
   }
 
