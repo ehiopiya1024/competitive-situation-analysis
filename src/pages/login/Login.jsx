@@ -36,7 +36,6 @@ class NormalLoginForm extends React.Component {
   };
 
   render() {
-    console.log(this);
     return (
       <div className={styles.root}>
         <div className={styles.title}>
