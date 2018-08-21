@@ -40,7 +40,7 @@ class SearchForm extends React.Component {
    *
    * other用于保存动态数组的内容
    */
-  other = [];
+  other = {};
 
   changeOther = newOther => {
     this.other = newOther;
