@@ -298,8 +298,8 @@ const mock = {
         errCode: "0",
         errorCode: 0,
         showNumber: 0,
-        total: 200,
-        data: articles
+        total: 0,
+        data: []
       });
     }, 500);
   },
