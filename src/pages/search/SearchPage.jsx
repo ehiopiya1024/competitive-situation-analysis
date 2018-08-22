@@ -22,6 +22,8 @@ class SearchPage extends React.Component {
           <div className={Styles.text}>没有找到相关结果</div>
         </div>
       );
+    } else if (total === -1) {
+      info = <div className={Styles.root}>未知错误</div>;
     } else {
       info = (
         <div className={Styles.info}>

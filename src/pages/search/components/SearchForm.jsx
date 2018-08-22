@@ -35,20 +35,8 @@ const getOptions = data => {
 };
 
 class SearchForm extends React.Component {
-  /**
-   * @Author: TH
-   * @Date: 2018-08-21 15:26:18
-   *
-   * other用于保存动态数组的内容
-   */
   Other = new Map();
 
-  /**
-   * @Author: TH
-   * @Date: 2018-08-21 22:15:56
-   *
-   * data用于保存搜索条件
-   */
   data = {};
 
   changeOther = newOther => {
@@ -75,9 +63,12 @@ class SearchForm extends React.Component {
     });
     data.page = 0;
     this.data = data;
-    window.addEventListener("scroll", this.getData);
     const { dispatch } = this.props;
-    dispatch({ type: "search/getData", payload: data });
+    dispatch({
+      type: "search/getData",
+      payload: data,
+      listener: { add: this.addListener, remove: this.removeListener }
+    });
   };
 
   getData = () => {
@@ -85,14 +76,26 @@ class SearchForm extends React.Component {
     if (scrollHeight === clientHeight + scrollTop) {
       const { dispatch } = this.props;
       this.data.page += 1;
-      dispatch({ type: "search/getData", payload: this.data });
+      dispatch({
+        type: "search/getData",
+        payload: this.data,
+        listener: { add: this.addListener, remove: this.removeListener }
+      });
     }
+  };
+
+  addListener = () => {
+    window.addEventListener("scroll", this.getData);
+  };
+
+  removeListener = () => {
+    window.removeEventListener("scroll", this.getData);
   };
 
   componentWillUnmount() {
     const { dispatch } = this.props;
     dispatch({ type: "search/clear" });
-    window.removeEventListener("scroll", this.getData);
+    this.removeListener();
     window.scrollTo(0, 0, true);
   }
 

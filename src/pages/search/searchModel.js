@@ -15,13 +15,14 @@ export default {
     ...init
   },
   effects: {
-    *getData({ payload }, { call, put }) {
+    *getData({ payload, listener }, { call, put }) {
       if (payload.page === 0) {
         yield put({ type: "clear" });
       }
       yield put({ type: "changeState", loading: true });
       const result = yield call(getData, payload);
-      yield put({ type: "changeData", result });
+      console.log(payload);
+      yield put({ type: "changeData", result, listener });
       yield put({ type: "changeState", loading: false });
     }
   },
@@ -30,12 +31,27 @@ export default {
       ...state,
       loading
     }),
-    changeData: (state, { result }) => ({
-      ...state,
-      data: state.data.concat(result.data),
-      showNumber: result.showNumber,
-      total: result.total
-    }),
+    changeData: (state, { result, listener }) => {
+      const { errorCode } = result;
+      if (errorCode === 0) {
+        const { showNumber, total, data } = result;
+        if (showNumber < total) {
+          listener.add();
+        } else {
+          listener.remove();
+        }
+        return {
+          ...state,
+          data: state.data.concat(data),
+          showNumber,
+          total
+        };
+      }
+      return {
+        ...state,
+        total: -1
+      };
+    },
     clear: () => ({
       ...init
     })

@@ -293,15 +293,52 @@ const mock = {
    */
   "Get /api/search": (req, res) => {
     console.log(req.query);
-    setTimeout(() => {
-      res.status(200).json({
-        errCode: "0",
-        errorCode: 0,
-        showNumber: 0,
-        total: 0,
-        data: []
-      });
-    }, 500);
+    console.log(req.query.other);
+    if (req.query.other) {
+      const { other } = req.query;
+      console.log(other[4]);
+    }
+    if (req.query.other && req.query.other[0][4] === "test") {
+      setTimeout(() => {
+        res.status(200).json({
+          errCode: "0",
+          errorCode: 0,
+          showNumber: 0,
+          total: 0,
+          data: []
+        });
+      }, 500);
+    } else if (req.query.other && req.query.other[0][4] === "error") {
+      setTimeout(() => {
+        res.status(200).json({
+          errCode: "0",
+          errorCode: 1,
+          showNumber: 0,
+          total: 0,
+          data: []
+        });
+      }, 500);
+    } else if (req.query.page == 0) {
+      setTimeout(() => {
+        res.status(200).json({
+          errCode: "0",
+          errorCode: 0,
+          showNumber: 15,
+          total: 30,
+          data: articles
+        });
+      }, 500);
+    } else if (req.query.page == 1) {
+      setTimeout(() => {
+        res.status(200).json({
+          errCode: "0",
+          errorCode: 0,
+          showNumber: 30,
+          total: 30,
+          data: articles
+        });
+      }, 500);
+    }
   },
 
   /**
