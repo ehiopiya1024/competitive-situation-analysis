@@ -171,8 +171,8 @@ class UserInfo extends React.Component {
                 <CollectItem collectDataNew={collectDataNew} />
               </div>
             ) : (
-              <div>
-                <h3>还没有收藏文章，快去逛逛收藏吧</h3>
+              <div className={styles.noCollect}>
+                <h3>还没有收藏文章，快去逛逛收藏吧...</h3>
                 <img
                   src="http://p1.music.126.net/WjQOOjQYXwWJO2D4skZ8jQ==/3383197282912613.jpg"
                   alt=""
